@@ -1,0 +1,53 @@
+:host {
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+#control {
+  color: #757575;
+  border-bottom: 1px solid #757575;
+}
+
+#control > div {
+  padding: 12px 0;
+  overflow: hidden;
+  /* FIXME not working for some reason */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#arrow {
+  margin-left: 12px;
+}
+
+#overlay {
+  position: absolute;
+  left: 0;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+#menu {
+  margin: 0;
+  max-height: inherit;
+  max-width: inherit;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+:host([halign="right"]) #overlay {
+  left: auto;
+  right: 0;
+}
+
+polyfill-next-selector { content: ':host > .core-selected'; }
+::content .core-selected {
+  background-color: #eee;
+}

@@ -1,0 +1,8 @@
+{
+    "name": "paper-dropdown",
+    "private": false,
+    "dependencies": {
+        "polymer": "Polymer/polymer#master",
+        "core-dropdown": "Polymer/core-dropdown#master"
+    }
+}
