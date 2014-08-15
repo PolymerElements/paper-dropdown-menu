@@ -26,28 +26,6 @@
   margin-left: 12px;
 }
 
-#overlay {
-  position: absolute;
-  left: 0;
-  margin: 0;
-  background-color: #fff;
-  border-radius: 3px;
-}
-
-#menu {
-  margin: 0;
-  max-height: inherit;
-  max-width: inherit;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
-:host([halign="right"]) #overlay {
-  left: auto;
-  right: 0;
-}
-
-polyfill-next-selector { content: ':host > .core-selected'; }
-::content .core-selected {
-  background-color: #eee;
+#menu::shadow #menu {
+  margin: 8px 0;
 }
