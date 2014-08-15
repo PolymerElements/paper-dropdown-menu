@@ -9,28 +9,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!--
 
-`paper-dropdown` is a control where the user can choose from an array of options in a drop-down
-menu. The currently selected option is displayed in the control.
+`paper-dropdown` is a control where the user can choose from an array of
+options in a drop-down menu. The currently selected option is displayed in
+the control.
 
 Example:
 
-    <core-dropdown selected="Financier" valueattr="label">
-        <core-item label="Croissant"></core-item>
-        <core-item label="Donut"></core-item>
-        <core-item label="Financier"></core-item>
-        <core-item label="Madeleine"></core-item>
+    <paper-dropdown selected="Financier" valueattr="label">
+        <paper-item label="Croissant"></paper-item>
+        <paper-item label="Donut"></paper-item>
+        <paper-item label="Financier"></paper-item>
+        <paper-item label="Madeleine"></paper-item>
     </core-dropdown>
 
-This example renders a drop-down menu with 4 options, with the option `Financier` pre-selected.
+This example renders a drop-down menu with 4 options, with the option
+`Financier` pre-selected.
 
 Theming
 -------
 
-Style the drop-down menu with the `core-dropdown::shadow #menu` selector.
+Style the drop-down menu with the `paper-dropdown::shadow #menu` selector.
 
 Example:
 
-    core-dropdown::shadow #menu {
+    paper-dropdown::shadow #menu {
         background-color: #eee;
         border: 1px solid #ccc;
     }
@@ -54,8 +56,7 @@ contains the selection state.
 <link href="../polymer/polymer.html" rel="import">
 <link href="../core-icon/core-icon.html" rel="import">
 <link href="../core-icons/core-icons.html" rel="import">
-<link href="../core-menu/core-menu.html" rel="import">
-<link href="../core-overlay/core-overlay.html" rel="import">
+<link href="../core-popup-menu/core-popup-menu.html" rel="import">
 <link href="../paper-shadow/paper-shadow.html" rel="import">
 
 <polymer-element name="paper-dropdown">
@@ -70,15 +71,10 @@ contains the selection state.
     <core-icon id="arrow" icon="{{opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon>
   </div>
 
-  <core-overlay target="{{$.overlay}}" opened="{{opened}}" on-core-overlay-open="{{openAction}}"></core-overlay>
-
-  <paper-shadow z="1" id="overlay" target="{{$.overlay}}">
-
-    <core-menu id="menu" selected="{{selected}}" selectedItem="{{selectedItem}}" selectedClass="{{selectedClass}}" valueattr="{{valueattr}}" selectedProperty="{{selectedProperty}}" selectedAttribute="{{selectedAttribute}}" on-core-select="{{selectAction}}">
-      <content select="*"></content>
-    </core-menu>
-
-  </paper-shadow>
+  <core-popup-menu id="menu" relatedTarget="{{$.control}}" opened="{{opened}}" halign="{{halign}}" valign="{{valign}}"selected="{{selected}}" selectedItem="{{selectedItem}}" selectedClass="{{selectedClass}}" valueattr="{{valueattr}}" selectedProperty="{{selectedProperty}}" selectedAttribute="{{selectedAttribute}}" on-core-select="{{selectAction}}">
+    <paper-shadow z="1" target="{{$.menu}}"></paper-shadow>
+    <content select="*"></content>
+  </core-popup-menu>
 
 </template>
 <script>
@@ -181,33 +177,8 @@ contains the selection state.
 
     },
 
-    selectedItemTop: 0,
-
     toggle: function() {
       this.opened = !this.opened;
-    },
-
-    openAction: function(e) {
-      if (e.detail) {
-
-        var rect = this.$.control.getBoundingClientRect();
-        if (this.valign === 'top') {
-          this.$.overlay.style.top = 'auto';
-          this.$.overlay.style.bottom = '0px';
-          this.$.overlay.style.maxHeight = (window.innerHeight - 12) + 'px';
-        } else {
-          this.$.overlay.style.top = '0px';
-          this.$.overlay.style.bottom = 'auto';
-          this.$.overlay.style.maxHeight = (window.innerHeight - rect.height - 12) + 'px';
-        }
-        this.$.overlay.style.minWidth = rect.width + 'px';
-
-      } else {
-
-        // Scroll to the selected item
-        this.$.menu.scrollTop = this.selectedItem && (this.selectedItem.getBoundingClientRect().top - this.$.menu.getBoundingClientRect().top + this.$.menu.scrollTop) || 0;
-
-      }
     },
 
     selectAction: function() {
