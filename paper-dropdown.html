@@ -64,7 +64,7 @@ contains the selection state.
 
   <link href="paper-dropdown.css" rel="stylesheet">
 
-  <div id="control" layout horizontal on-tap="{{toggle}}">
+  <div id="control" layout horizontal selected?="{{selectedItem}}" on-tap="{{toggle}}">
     <div flex>
       {{selectedItem ? (selectedItem.label || selected) : label}}
     </div>
