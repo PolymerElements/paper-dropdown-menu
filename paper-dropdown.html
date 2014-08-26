@@ -66,7 +66,7 @@ contains the selection state.
 
   <div id="control" layout horizontal on-tap="{{toggle}}">
     <div flex>
-      {{selectedItem ? selectedItem.label : label}}
+      {{selectedItem ? (selectedItem.label || selected) : label}}
     </div>
     <core-icon id="arrow" icon="{{opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon>
   </div>
