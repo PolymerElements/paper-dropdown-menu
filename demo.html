@@ -11,13 +11,13 @@ license that can be found in the LICENSE file.
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  <title>paper-dropdown</title>
+  <title>paper-dropdown-menu</title>
 
   <script src="../platform/platform.js"></script>
 
   <link href="../font-roboto/roboto.html" rel="import">
   <link href="../paper-item/paper-item.html" rel="import">
-  <link href="paper-dropdown.html" rel="import">
+  <link href="paper-dropdown-menu.html" rel="import">
 
   <style shim-shadowdom>
     html, body {
@@ -34,7 +34,7 @@ license that can be found in the LICENSE file.
       padding: 12px;
     }
 
-    body /deep/ paper-dropdown.narrow {
+    body /deep/ paper-dropdown-menu.narrow {
       max-width: 100px;
     }
   </style>
@@ -42,34 +42,34 @@ license that can be found in the LICENSE file.
 </head>
 <body unresolved>
 
-  <polymer-element name="dropdown-demo">
+  <polymer-element name="dropdown-demo" on-core-select="{{selectAction}}">
   <template>
     <section layout vertical fit>
       <section layout horizontal>
 
-        <paper-dropdown>
+        <paper-dropdown-menu>
           <template repeat="{{countries}}">
             <paper-item label="{{name}}"></paper-item>
           </template>
-        </paper-dropdown>
+        </paper-dropdown-menu>
 
 <!--         <div style="margin:0 12px;">
           narrow:
-          <paper-dropdown class="narrow">
+          <paper-dropdown-menu class="narrow">
             <template repeat="{{countries}}">
               <paper-item label="{{name}}"></paper-item>
             </template>
-          </paper-dropdown>
+          </paper-dropdown-menu>
         </div>
 -->
 
         <div flex></div>
 
-        <paper-dropdown halign="right">
+        <paper-dropdown-menu halign="right">
           <template repeat="{{countries}}">
             <paper-item label="{{name}}"></paper-item>
           </template>
-        </paper-dropdown>
+        </paper-dropdown-menu>
       </section>
 
       <div flex center center>
@@ -77,12 +77,12 @@ license that can be found in the LICENSE file.
 
       <section>
         drop-up:
-        <paper-dropdown valign="top" valueattr="label" label="Favorite pastry" selected="Donut">
+        <paper-dropdown-menu valign="bottom" valueattr="label" label="Favorite pastry" selected="Donut">
           <paper-item label="Croissant"></paper-item>
           <paper-item label="Donut"></paper-item>
           <paper-item label="Financier"></paper-item>
           <paper-item label="Madeleine"></paper-item>
-        </paper-dropdown>
+        </paper-dropdown-menu>
       </section>
 
     </section>
@@ -334,7 +334,11 @@ license that can be found in the LICENSE file.
         {name: 'Yemen', code: 'YE'},
         {name: 'Zambia', code: 'ZM'},
         {name: 'Zimbabwe', code: 'ZW'}
-      ]
+      ],
+
+      selectAction: function(e, details) {
+        console.log('select', details.selected, details.item);
+      }
     });
   </script>
   </polymer-element>
