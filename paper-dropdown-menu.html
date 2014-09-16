@@ -74,12 +74,12 @@ contains the selection state.
     <core-icon id="arrow" icon="{{opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon>
   </div>
 
-  <core-dropdown id="dropdown" relatedTarget="{{$.control}}" opened="{{opened}}" halign="{{halign}}" valign="{{valign}}" margin="12">
+  <core-dropdown id="dropdown" relatedTarget="{{$.control}}" opened="{{opened}}" halign="{{halign}}" valign="{{valign}}">
 
     <paper-shadow z="1" target="{{$.dropdown}}" hasPosition></paper-shadow>
 
     <div class="menu-container">
-      <core-menu id="menu" selected="{{selected}}" selectedItem="{{selectedItem}}" selectedClass="{{selectedClass}}" valueattr="{{valueattr}}" selectedProperty="{{selectedProperty}}" selectedAttribute="{{selectedAttribute}}" on-core-select="{{selectAction}}">
+      <core-menu id="menu" selected="{{selected}}" selectedItem="{{selectedItem}}" selectedClass="{{selectedClass}}" valueattr="{{valueattr}}" selectedProperty="{{selectedProperty}}" selectedAttribute="{{selectedAttribute}}" on-core-activate="{{activateAction}}">
         <content></content>
       </core-menu>
     </div>
@@ -191,7 +191,7 @@ contains the selection state.
       this.opened = !this.opened;
     },
 
-    selectAction: function() {
+    activateAction: function() {
       this.opened = false;
     }
 
