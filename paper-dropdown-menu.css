@@ -45,6 +45,7 @@ core-icon {
 
 #dropdown {
   margin: 12px;
+  overflow: visible;
 }
 
 #menu {

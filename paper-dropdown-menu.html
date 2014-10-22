@@ -76,7 +76,7 @@ contains the selection state.
 
   <core-dropdown id="dropdown" relatedTarget="{{$.control}}" opened="{{opened}}" halign="{{halign}}" valign="{{valign}}">
 
-    <paper-shadow z="1" target="{{$.dropdown}}" hasPosition></paper-shadow>
+    <paper-shadow fit></paper-shadow>
 
     <div class="menu-container">
       <core-menu id="menu" selected="{{selected}}" selectedItem="{{selectedItem}}" selectedClass="{{selectedClass}}" valueattr="{{valueattr}}" selectedProperty="{{selectedProperty}}" selectedAttribute="{{selectedAttribute}}" on-core-activate="{{activateAction}}">
@@ -133,7 +133,7 @@ contains the selection state.
 
       /**
        * Specifies the CSS class to be used to add to the selected element.
-       * 
+       *
        * @attribute selectedClass
        * @type string
        * @default 'core-selected'
