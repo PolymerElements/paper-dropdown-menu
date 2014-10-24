@@ -62,6 +62,24 @@ contains the selection state.
 
 <link href="../paper-shadow/paper-shadow.html" rel="import">
 
+<style shim-shadowdom>
+  html /deep/ #paper-dropdown-menu-dropdown {
+    margin: 12px;
+    overflow: visible;
+  }
+
+  html /deep/ #paper-dropdown-menu-dropdown #menu {
+    padding: 8px 0;
+    margin: 0;
+  }
+
+  html /deep/ #paper-dropdown-menu-dropdown .menu-container {
+    overflow: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+</style>
+
 <polymer-element name="paper-dropdown-menu">
 <template>
 
@@ -74,7 +92,7 @@ contains the selection state.
     <core-icon id="arrow" icon="{{opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon>
   </div>
 
-  <core-dropdown id="dropdown" relatedTarget="{{$.control}}" opened="{{opened}}" halign="{{halign}}" valign="{{valign}}">
+  <core-dropdown id="paper-dropdown-menu-dropdown" relatedTarget="{{$.control}}" opened="{{opened}}" halign="{{halign}}" valign="{{valign}}" layered="{{layered}}">
 
     <paper-shadow fit></paper-shadow>
 
@@ -168,6 +186,15 @@ contains the selection state.
        * @default null
        */
       selectedItem: null,
+
+      /**
+       * If true, the overlay is guaranteed to display above page content.
+       *
+       * @attribute layered
+       * @type boolean
+       * @default false
+      */
+      layered: false,
 
       /**
        * Horizontally align the overlay with the control.
