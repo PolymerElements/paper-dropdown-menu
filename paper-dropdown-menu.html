@@ -9,37 +9,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!--
 
-`paper-dropdown-menu` is a control where the user can choose from an array of
-options in a drop-down menu. The currently selected option is displayed in
-the control.
+`paper-dropdown-menu` works together with `paper-dropdown` and `core-menu` to
+implement a drop-down menu. The currently selected item is displayed in the
+control. If no item is selected, the `label` is displayed instead.
+
+The child element with the class `dropdown` will be used as the drop-down
+menu. It should be a `paper-dropdown` or other overlay element. You should
+also provide a `core-selector` or other selector element, such as `core-menu`,
+in the drop-down. You should apply the class `menu` to the selector element.
 
 Example:
 
-    <paper-dropdown-menu selected="Financier" valueattr="label">
-        <paper-item label="Croissant"></paper-item>
-        <paper-item label="Donut"></paper-item>
-        <paper-item label="Financier"></paper-item>
-        <paper-item label="Madeleine"></paper-item>
+    <paper-dropdown-menu label="Your favorite pastry">
+        <paper-dropdown class="dropdown">
+            <core-menu class="menu">
+                <paper-item>Croissant</paper-item>
+                <paper-item>Donut</paper-item>
+                <paper-item>Financier</paper-item>
+                <paper-item>Madeleine</paper-item>
+            </core-menu>
+        </paper-dropdown>
     </paper-dropdown-menu>
 
-This example renders a drop-down menu with 4 options, with the option
-`Financier` pre-selected.
-
-Theming
--------
-
-Style the drop-down menu with the `paper-dropdown-menu::shadow #menu` selector.
-
-Example:
-
-    paper-dropdown-menu::shadow #dropdown {
-        background-color: #eee;
-        border: 1px solid #ccc;
-    }
+This example renders a drop-down menu with 4 options.
 
 @group Paper Elements
 @element paper-dropdown-menu
-@status beta
+@extends core-dropdown-base
+@status unstable
 @homepage github.io
 -->
 
