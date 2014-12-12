@@ -93,7 +93,7 @@ contains the selection state.
       outline: none;
     }
 
-    #label, #arrow {
+    #label:not(.selectedItem), #arrow {
       color: #757575;
     }
 
@@ -164,8 +164,10 @@ contains the selection state.
     selectAction: function(e) {
       var detail = e.detail;
       if (detail.isSelected) {
+        this.$.label.classList.add('selectedItem');
         this.selectedItemLabel = detail.item.label || detail.item.textContent;
       } else {
+        this.$.label.classList.remove('selectedItem');
         this.selectedItemLabel = '';
       }
     }
