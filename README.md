@@ -20,6 +20,7 @@ Example:
 This example renders a dropdown menu with 4 options.
 ### Styling
 The following custom properties and mixins are also available for styling:
+
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-dropdown-menu` | A mixin that is applied to the element host | `{}`
