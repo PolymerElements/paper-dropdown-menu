@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <!--
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
@@ -42,6 +42,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <paper-dropdown-menu no-animations>
         <paper-menu class="dropdown-content" selected="1">
+          <paper-item>Foo</paper-item>
+          <paper-item>Bar</paper-item>
+        </paper-menu>
+      </paper-dropdown-menu>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="ReadonlyDropdownMenu">
+    <template>
+      <paper-dropdown-menu no-animations readonly>
+        <paper-menu class="dropdown-content">
           <paper-item>Foo</paper-item>
           <paper-item>Bar</paper-item>
         </paper-menu>
@@ -117,6 +128,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('the input area shows the correct selection', function() {
           var secondItem = Polymer.dom(dropdownMenu).querySelectorAll('paper-item')[1];
           expect(dropdownMenu.selectedItem).to.be.equal(secondItem);
+        });
+      });
+
+      suite('when readonly', function() {
+        setup(function() {
+          dropdownMenu = fixture('ReadonlyDropdownMenu');
+        });
+
+        Polymer.Base.async(function() {
+          var firstItem = Polymer.dom(content).querySelector('paper-item');
+
+          MockInteractions.tap(firstItem);
+
+          Polymer.Base.async(function() {
+            expect(dropdownMenu.selectedItem).to.be.equal(null);
+            done();
+          });
         });
       });
     });
