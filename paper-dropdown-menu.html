@@ -16,7 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel="import" href="../iron-behaviors/iron-control-state.html">
 <link rel="import" href="../iron-behaviors/iron-button-state.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
 
@@ -142,7 +141,7 @@ respectively.
           always-float-label="[[alwaysFloatLabel]]"
           no-label-float="[[noLabelFloat]]"
           label="[[label]]">
-          <iron-icon icon="arrow-drop-down" suffix></iron-icon>
+          <iron-icon icon="[[icon]]" suffix></iron-icon>
         </paper-input>
       </div>
       <content id="content" select=".dropdown-content"></content>
@@ -217,6 +216,15 @@ respectively.
           type: Boolean,
           notify: true,
           value: false
+        },
+        
+        /**
+         * Set custom icon path for arrow-drop-down to avoid full iron-icons import -> custom-iconset:arrow-drop-down
+         */
+        icon: {
+          type: String,
+          notify: true,
+          value: 'arrow-drop-down'
         },
 
         /**
