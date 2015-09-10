@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-behaviors/iron-button-state.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
+<link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 
 <!--
 `paper-dropdown-menu` is similar to a native browser select element.
@@ -169,7 +170,8 @@ respectively.
 
       behaviors: [
         Polymer.IronControlState,
-        Polymer.IronButtonState
+        Polymer.IronButtonState,
+        Polymer.IronFormElementBehavior
       ],
 
       properties: {
@@ -253,6 +255,9 @@ respectively.
         noAnimations: {
           type: Boolean,
           value: false
+        },
+        value: {
+          type: String
         }
       },
 
@@ -279,8 +284,35 @@ respectively.
         if (contentElement && contentElement.selectedItem) {
           this._setSelectedItem(contentElement.selectedItem);
         }
+        this._managedSelector = this._findTargetSelector();
+        if (this._managedSelector) {
+          this.set('value', this._managedSelector.selected);
+          this._managedSelector.addEventListener('selected-item-changed', this._onSelectedItemChanged.bind(this));
+        }
       },
-
+      
+      _findTargetSelector: function() {
+        var children = Polymer.dom(this).children;
+        if (children.length !== 1) {
+          console.error(this, 'expects only a single selector child');
+          return null;
+        }
+        var child = children[0];
+        if ('selected' in child && 'items' in child) {
+          return child;
+        } else {
+          console.error(this, 'can only manage children that are selectors');
+          return null;
+        }
+      },
+      
+      _onSelectedItemChanged: function(event) {
+        if (this._settingSelection) { return; }
+        if (event.detail.value) {
+          this.set('value', event.target.selected);
+        }
+      },
+      
       /**
        * The content element that is contained by the dropdown menu, if any.
        */
