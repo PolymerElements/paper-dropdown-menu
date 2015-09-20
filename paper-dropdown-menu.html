@@ -210,7 +210,16 @@ respectively.
         placeholder: {
           type: String
         },
-
+        
+         /**
+         * Set custom icon path for arrow-drop-down to avoid full iron-icons import -> custom-iconset:arrow-drop-down
+         */
+        icon: {
+          type: String,
+          notify: true,
+          value: 'arrow-drop-down'
+        },
+        
         /**
          * True if the dropdown is open. Otherwise, false.
          */
@@ -256,9 +265,17 @@ respectively.
           type: Boolean,
           value: false
         },
+<<<<<<< HEAD
         value: {
           type: String
         }
+=======
+        
+        value: {
+          type: String
+        },
+        
+>>>>>>> origin/master
       },
 
       listeners: {
@@ -290,7 +307,11 @@ respectively.
           this._managedSelector.addEventListener('selected-item-changed', this._onSelectedItemChanged.bind(this));
         }
       },
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> origin/master
       _findTargetSelector: function() {
         var children = Polymer.dom(this).children;
         if (children.length !== 1) {
