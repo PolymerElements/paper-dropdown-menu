@@ -201,7 +201,7 @@ respectively.
         selectedItemLabel: {
           type: String,
           notify: true,
-          computed: '_computeSelectedItemLabel(selectedItem)'
+          readOnly: true
         },
 
         /**
@@ -225,7 +225,7 @@ respectively.
         value: {
           type: String,
           notify: true,
-          computed: '_computeValue(selectedItemLabel)'
+          readOnly: true
         },
 
         /**
@@ -294,6 +294,10 @@ respectively.
         'aria-haspopup': 'true'
       },
 
+      observers: [
+        '_selectedItemChanged(selectedItem)'
+      ],
+
       attached: function() {
         // NOTE(cdata): Due to timing, a preselected value in a `IronSelectable`
         // child will cause an `iron-select` event to fire while the element is
@@ -361,21 +365,16 @@ respectively.
        * @param {Element} selectedItem A selected Element item, with an
        * optional `label` property.
        */
-      _computeSelectedItemLabel: function(selectedItem) {
+      _selectedItemChanged: function(selectedItem) {
+        var value = '';
         if (!selectedItem) {
-          return '';
+          value = '';
+        } else {
+          value = selectedItem.label || selectedItem.textContent.trim();
         }
 
-        return selectedItem.label || selectedItem.textContent.trim();
-      },
-
-      /**
-       * Update `value` based on the value of `selectedItemLabel`.
-       *
-       * @param {String} selectedItemLabel The label of the selected item
-       */
-      _computeValue: function(selectedItemLabel) {
-        return selectedItemLabel;
+        this._setValue(value);
+        this._setSelectedItemLabel(value);
       },
 
       /**
@@ -401,7 +400,7 @@ respectively.
        */
       _getValidity: function() {
         return this.disabled || !this.required || (this.required && this.value);
-      },
+      }
     });
   })();
 </script>
