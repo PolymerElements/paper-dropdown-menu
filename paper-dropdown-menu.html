@@ -19,6 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
+<link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
 
 <!--
 Material design: [Dropdown menus](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
@@ -149,6 +151,7 @@ respectively.
       <div class="dropdown-trigger">
         <paper-ripple></paper-ripple>
         <paper-input
+          invalid="[[invalid]]"
           readonly
           disabled="[[disabled]]"
           value="[[selectedItemLabel]]"
@@ -184,7 +187,9 @@ respectively.
 
       behaviors: [
         Polymer.IronControlState,
-        Polymer.IronButtonState
+        Polymer.IronButtonState,
+        Polymer.IronFormElementBehavior,
+        Polymer.IronValidatableBehavior
       ],
 
       properties: {
@@ -210,6 +215,17 @@ respectively.
           type: Object,
           notify: true,
           readOnly: true
+        },
+
+        /**
+         * The value for this element that will be used when submitting in
+         * a form. It is read only, and will always have the same value
+         * as `selectedItemLabel`.
+         */
+        value: {
+          type: String,
+          notify: true,
+          computed: '_computeValue(selectedItemLabel)'
         },
 
         /**
@@ -354,6 +370,15 @@ respectively.
       },
 
       /**
+       * Update `value` based on the value of `selectedItemLabel`.
+       *
+       * @param {String} selectedItemLabel The label of the selected item
+       */
+      _computeValue: function(selectedItemLabel) {
+        return selectedItemLabel;
+      },
+
+      /**
        * Compute the vertical offset of the menu based on the value of
        * `noLabelFloat`.
        *
@@ -366,7 +391,17 @@ respectively.
         // template. The metrics will change depending on whether or not the
         // input has a floating label.
         return noLabelFloat ? -4 : 8;
-      }
+      },
+
+      /**
+       * Returns false if the element is required and does not have a selection,
+       * and true otherwise.
+       * @return {Boolean} true if `required` is false, or if `required` is true
+       * and the element has a valid selection.
+       */
+      _getValidity: function() {
+        return this.disabled || !this.required || (this.required && this.value);
+      },
     });
   })();
 </script>
