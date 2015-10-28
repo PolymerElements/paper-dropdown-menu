@@ -138,6 +138,7 @@ respectively.
 
   </style>
   <template>
+    <div role="button"></div>
     <paper-menu-button
       id="menuButton"
       vertical-align="top"
@@ -151,6 +152,7 @@ respectively.
       <div class="dropdown-trigger">
         <paper-ripple></paper-ripple>
         <paper-input
+          type="text"
           invalid="[[invalid]]"
           readonly
           disabled="[[disabled]]"
@@ -290,12 +292,14 @@ respectively.
       },
 
       hostAttributes: {
-        role: 'group',
+        role: 'combobox',
+        'aria-autocomplete': 'none',
         'aria-haspopup': 'true'
       },
 
       observers: [
-        '_selectedItemChanged(selectedItem)'
+        '_selectedItemChanged(selectedItem)',
+        '_openedChanged(opened)'
       ],
 
       attached: function() {
@@ -400,6 +404,14 @@ respectively.
        */
       _getValidity: function() {
         return this.disabled || !this.required || (this.required && this.value);
+      },
+
+      _openedChanged: function() {
+        var openState = this.opened ? 'true' : 'false';
+        var e = this.contentElement;
+        if (e) {
+          e.setAttribute('aria-expanded', openState);
+        }
       }
     });
   })();
