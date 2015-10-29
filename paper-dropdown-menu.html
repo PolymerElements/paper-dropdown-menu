@@ -138,6 +138,7 @@ respectively.
 
   </style>
   <template>
+    <!-- this div fulfills an a11y requirement for combobox, do not remove -->
     <div role="button"></div>
     <paper-menu-button
       id="menuButton"
@@ -151,6 +152,7 @@ respectively.
       opened="{{opened}}">
       <div class="dropdown-trigger">
         <paper-ripple></paper-ripple>
+        <!-- paper-input has type="text" for a11y, do not remove -->
         <paper-input
           type="text"
           invalid="[[invalid]]"
