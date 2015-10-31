@@ -141,7 +141,7 @@ respectively.
     <paper-menu-button
       id="menuButton"
       vertical-align="top"
-      horizontal-align="right"
+      horizontal-align="[[horizontalAlign]]"
       vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat)]]"
       disabled="[[disabled]]"
       no-animations="[[noAnimations]]"
@@ -240,6 +240,16 @@ respectively.
          */
         placeholder: {
           type: String
+        },
+
+        /**
+         * The orientation against which to align the menu dropdown
+         * horizontally relative to the dropdown trigger.
+         */
+        horizontalAlign: {
+          type: String,
+          value: 'right',
+          reflectToAttribute: true
         },
 
         /**
