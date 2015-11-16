@@ -41,5 +41,6 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "web-component-tester": "*",
     "paper-tabs": "polymerelements/paper-tabs#^1.0.0"
-  }
+  },
+  "ignore": []
 }
