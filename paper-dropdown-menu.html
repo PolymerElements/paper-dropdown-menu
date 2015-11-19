@@ -16,7 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel="import" href="../iron-behaviors/iron-control-state.html">
 <link rel="import" href="../iron-behaviors/iron-button-state.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
 <link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
@@ -163,7 +162,7 @@ respectively.
           always-float-label="[[alwaysFloatLabel]]"
           no-label-float="[[noLabelFloat]]"
           label="[[label]]">
-          <iron-icon icon="arrow-drop-down" suffix></iron-icon>
+          <iron-icon icon="[[icon]]" suffix></iron-icon>
         </paper-input>
       </div>
       <content id="content" select=".dropdown-content"></content>
@@ -245,7 +244,16 @@ respectively.
         placeholder: {
           type: String
         },
-
+        
+         /**
+         * Set custom icon path for arrow-drop-down to avoid full iron-icons import -> custom-iconset:arrow-drop-down
+         */
+        icon: {
+          type: String,
+          notify: true,
+          value: 'arrow-drop-down'
+        },
+        
         /**
          * True if the dropdown is open. Otherwise, false.
          */
@@ -254,6 +262,15 @@ respectively.
           notify: true,
           value: false,
           observer: '_openedChanged'
+        },
+        
+        /**
+         * Set custom icon path for arrow-drop-down to avoid full iron-icons import -> custom-iconset:arrow-drop-down
+         */
+        icon: {
+          type: String,
+          notify: true,
+          value: 'arrow-drop-down'
         },
 
         /**
@@ -282,7 +299,12 @@ respectively.
         noAnimations: {
           type: Boolean,
           value: false
-        }
+        },
+        
+        value: {
+          type: String
+        },
+        
       },
 
       listeners: {
@@ -313,8 +335,35 @@ respectively.
         if (contentElement && contentElement.selectedItem) {
           this._setSelectedItem(contentElement.selectedItem);
         }
+        this._managedSelector = this._findTargetSelector();
+        if (this._managedSelector) {
+          this.set('value', this._managedSelector.selected);
+          this._managedSelector.addEventListener('selected-item-changed', this._onSelectedItemChanged.bind(this));
+        }
       },
 
+      _findTargetSelector: function() {
+        var children = Polymer.dom(this).children;
+        if (children.length !== 1) {
+          console.error(this, 'expects only a single selector child');
+          return null;
+        }
+        var child = children[0];
+        if ('selected' in child && 'items' in child) {
+          return child;
+        } else {
+          console.error(this, 'can only manage children that are selectors');
+          return null;
+        }
+      },
+      
+      _onSelectedItemChanged: function(event) {
+        if (this._settingSelection) { return; }
+        if (event.detail.value) {
+          this.set('value', event.target.selected);
+        }
+      },
+      
       /**
        * The content element that is contained by the dropdown menu, if any.
        */
