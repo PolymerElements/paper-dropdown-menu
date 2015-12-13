@@ -49,6 +49,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="TrivialCustomValueDropdownMenu">
+    <template>
+      <paper-dropdown-menu no-animations>
+        <paper-listbox class="dropdown-content" attr-for-selected="customValueAttr">
+          <paper-item customValueAttr="first">Foo</paper-item>
+          <paper-item customValueAttr="second">Bar</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="PreselectedCustomValueDropdownMenu">
+    <template>
+      <paper-dropdown-menu no-animations>
+        <paper-listbox class="dropdown-content" selected="1" attr-for-selected="customValueAttr">
+          <paper-item customValueAttr="first">Foo</paper-item>
+          <paper-item customValueAttr="second">Bar</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </template>
+  </test-fixture>
+
   <script>
 
     suite('<paper-dropdown-menu>', function() {
@@ -109,6 +131,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
+      suite('when a custom attribute value is specified', function (done) {
+        setup(function() {
+          dropdownMenu = fixture('TrivialCustomValueDropdownMenu');
+        });
+
+        test('sets value to the custom attribute indicated by attrForSelected', function(done) {
+          MockInteractions.tap(dropdownMenu);
+
+          Polymer.Base.async(function() {
+            var firstItem = Polymer.dom(content).querySelector('paper-item');
+            MockInteractions.tap(firstItem);
+
+            Polymer.Base.async(function() {
+              expect(dropdownMenu.value).to.be.equal(firstItem.customValueAttr);
+              done();
+            });
+          });
+        });
+      });
+
       suite('when a value is preselected', function() {
         setup(function() {
           dropdownMenu = fixture('PreselectedDropdownMenu');
@@ -118,6 +160,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           Polymer.dom.flush();
           var secondItem = Polymer.dom(dropdownMenu).querySelectorAll('paper-item')[1];
           expect(dropdownMenu.selectedItem).to.be.equal(secondItem);
+        });
+      });
+
+      suite('when a value is preselected and a custom attribute value is specified', function () {
+        setup(function() {
+          dropdownMenu = fixture('PreselectedCustomValueDropdownMenu');
+        });
+
+        test('sets value to the custom attribute indicated by attrForSelected', function() {
+
+          Polymer.Base.async(function() {
+            Polymer.dom.flush();
+            var secondItem = Polymer.dom(dropdownMenu).querySelector('paper-item')[1];
+            expect(dropdownMenu.value).to.be.equal(secondItem.customValueAttr);
+
+          });
         });
       });
 
