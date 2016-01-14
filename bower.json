@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "polymerelements/iron-demo-helpers#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
     "paper-item": "polymerelements/paper-item#^1.0.0",
