@@ -394,7 +394,7 @@ respectively.
           var label = '';
           if (selectedItem) {
             label = selectedItem.label || selectedItem.textContent.trim();
-            value = selectedItem.value || label;
+            value = selectedItem.value || selectedItem.getAttribute("value") || label;
           }
 
           this._setValue(value);
