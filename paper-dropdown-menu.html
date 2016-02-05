@@ -30,18 +30,18 @@ item is displayed in the control. If no item is selected, the `label` is
 displayed instead.
 
 The child element with the class `dropdown-content` will be used as the dropdown
-menu. It could be a `paper-menu` or element that triggers `iron-select` when
+menu. It could be a `paper-listbox` or element that triggers `iron-select` when
 selecting its children.
 
 Example:
 
     <paper-dropdown-menu label="Your favourite pastry">
-      <paper-menu class="dropdown-content">
+      <paper-listbox class="dropdown-content">
         <paper-item>Croissant</paper-item>
         <paper-item>Donut</paper-item>
         <paper-item>Financier</paper-item>
         <paper-item>Madeleine</paper-item>
-      </paper-menu>
+      </paper-listbox>
     </paper-dropdown-menu>
 
 This example renders a dropdown menu with 4 options.
