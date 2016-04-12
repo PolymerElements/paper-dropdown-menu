@@ -119,12 +119,13 @@ To style it:
 
       #input {
         @apply(--paper-font-subhead);
+        @apply(--paper-font-common-nowrap);
         border-bottom: 1px solid var(--paper-dropdown-menu-color, --secondary-text-color);
         color: var(--paper-dropdown-menu-color, --primary-text-color);
-        padding: 12px 0 0 0;
         width: 200px;  /* Default size of an <input> */
         min-height: 24px;
-        white-space: nowrap;
+        box-sizing: border-box;
+        padding: 12px 20px 0 0;   /* Right padding so that text doesn't overlap the icon */
         outline: none;
         @apply(--paper-dropdown-menu-input);
       }
@@ -142,8 +143,9 @@ To style it:
       }
 
       label {
-        @apply(--paper-font-common-nowrap);
         @apply(--paper-font-subhead);
+        @apply(--paper-font-common-nowrap);
+        display: block;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -153,10 +155,9 @@ To style it:
          * between the input and the label (from the input's padding-top)
          */
         top: 28px;
-        display: block;
+        box-sizing: border-box;
         width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
+        padding-right: 20px;    /* Right padding so that text doesn't overlap the icon */
         text-align: left;
         transition-duration: .2s;
         transition-timing-function: cubic-bezier(.4,0,.2,1);
