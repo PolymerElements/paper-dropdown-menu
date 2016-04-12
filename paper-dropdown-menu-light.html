@@ -130,6 +130,11 @@ To style it:
         @apply(--paper-dropdown-menu-input);
       }
 
+      :host-context([dir="rtl"]) #input {
+        padding-right: 0px;
+        padding-left: 20px;
+      }
+
       :host([disabled]) #input {
         border-bottom: 1px dashed var(--paper-dropdown-menu-color, --secondary-text-color);
       }
@@ -163,6 +168,11 @@ To style it:
         transition-timing-function: cubic-bezier(.4,0,.2,1);
         color: var(--paper-dropdown-menu-color, --secondary-text-color);
         @apply(--paper-dropdown-menu-label);
+      }
+
+      :host-context([dir="rtl"]) label {
+        padding-right: 0px;
+        padding-left: 20px;
       }
 
       :host([no-label-float]) label {
@@ -226,6 +236,11 @@ To style it:
         margin-top: 12px;
         color: var(--disabled-text-color);
         @apply(--paper-dropdown-menu-icon);
+      }
+
+      :host-context([dir="rtl"]) iron-icon {
+        left: 0;
+        right: auto;
       }
 
       :host([no-label-float]) iron-icon {
