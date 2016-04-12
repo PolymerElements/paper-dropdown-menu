@@ -101,19 +101,19 @@ To style it:
       /**
        * All of these styles below are for styling the fake-input display
        */
-      .container {
+      .dropdown-trigger {
         box-sizing: border-box;
         position: relative;
         width: 100%;
         padding: 16px 0 8px 0;
       }
 
-      :host([disabled]) .container {
+      :host([disabled]) .dropdown-trigger {
         pointer-events: none;
         opacity: var(--paper-dropdown-menu-disabled-opacity, 0.33);
       }
 
-      :host([no-label-float]) .container {
+      :host([no-label-float]) .dropdown-trigger {
         padding-top: 8px;   /* If there's no label, we need less space up top. */
       }
 
@@ -260,12 +260,10 @@ To style it:
       on-iron-deselect="_onIronDeselect"
       opened="{{opened}}">
       <div class="dropdown-trigger">
-        <div class="container">
-          <label hidden$="[[!label]]"
-              class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">[[label]]</label>
-          <div id="input" tabindex="-1">&nbsp;</div>
-          <iron-icon icon="paper-dropdown-menu:arrow-drop-down"></iron-icon>
-        </div>
+        <label hidden$="[[!label]]"
+            class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">[[label]]</label>
+        <div id="input" tabindex="-1">&nbsp;</div>
+        <iron-icon icon="paper-dropdown-menu:arrow-drop-down"></iron-icon>
         <span class="error">[[errorMessage]]</span>
       </div>
       <content id="content" select=".dropdown-content"></content>
