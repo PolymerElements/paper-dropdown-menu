@@ -564,7 +564,7 @@ To style it:
             this.$.input.textContent = this.value;
           }
 
-          if (this.value || this.value === 0 || this.value === false) {
+          if (this.value || this.value === '0' || this.value === 'false') {
             this._setHasContent(true);
           } else {
             this._setHasContent(false);
