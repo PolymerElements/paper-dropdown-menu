@@ -102,6 +102,10 @@ To style it:
         outline: none;
       }
 
+      :host {
+        width: 200px;  /* Default size of an <input> */
+      }
+
       /**
        * All of these styles below are for styling the fake-input display
        */
@@ -126,7 +130,7 @@ To style it:
         @apply(--paper-font-common-nowrap);
         border-bottom: 1px solid var(--paper-dropdown-menu-color, --secondary-text-color);
         color: var(--paper-dropdown-menu-color, --primary-text-color);
-        width: 200px;  /* Default size of an <input> */
+        width: 100%;
         min-height: 24px;
         box-sizing: border-box;
         padding: 12px 20px 0 0;   /* Right padding so that text doesn't overlap the icon */
@@ -379,7 +383,7 @@ To style it:
             type: Boolean,
             value: false
           },
-          
+
           /**
            * Set to true to disable the floating label. Bind this to the
            * `<paper-input-container>`'s `noLabelFloat` property.
