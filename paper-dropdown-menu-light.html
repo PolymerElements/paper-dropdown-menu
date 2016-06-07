@@ -128,10 +128,10 @@ To style it:
       #input {
         @apply(--paper-font-subhead);
         @apply(--paper-font-common-nowrap);
+        line-height: 1.5;
         border-bottom: 1px solid var(--paper-dropdown-menu-color, --secondary-text-color);
         color: var(--paper-dropdown-menu-color, --primary-text-color);
         width: 100%;
-        min-height: 24px;
         box-sizing: border-box;
         padding: 12px 20px 0 0;   /* Right padding so that text doesn't overlap the icon */
         outline: none;
@@ -242,7 +242,6 @@ To style it:
         right: 0px;
         bottom: 8px;    /* The container has an 8px bottom padding */
         @apply(--paper-font-subhead);
-        margin-top: 12px;
         color: var(--disabled-text-color);
         @apply(--paper-dropdown-menu-icon);
       }
