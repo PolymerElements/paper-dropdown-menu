@@ -250,7 +250,8 @@ respectively.
            */
           readonly: {
             type: Boolean,
-            value: false
+            value: false,
+            observer: '_readonlyChanged'
           }
         },
 
@@ -397,6 +398,12 @@ respectively.
           var e = this.contentElement;
           if (e) {
             e.setAttribute('aria-expanded', openState);
+          }
+        },
+
+        _readonlyChanged: function(readonly) {
+          if (readonly) {
+            this.close();
           }
         }
       });
