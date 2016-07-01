@@ -110,6 +110,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
+      test('sets ignoreSelect property on the contained paper-menu-button', function() {
+        dropdownMenu.ignoreSelect = true;
+        expect(dropdownMenu.$.menuButton.ignoreSelect).to.be.equal(true);
+      });
+
       suite('when a value is preselected', function() {
         setup(function() {
           dropdownMenu = fixture('PreselectedDropdownMenu');

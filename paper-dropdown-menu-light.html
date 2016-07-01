@@ -271,6 +271,7 @@ To style it:
     <div role="button"></div>
     <paper-menu-button
       id="menuButton"
+      ignore-select="[[ignoreSelect]]"
       vertical-align="[[verticalAlign]]"
       horizontal-align="[[horizontalAlign]]"
       vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat)]]"
@@ -410,6 +411,15 @@ To style it:
           verticalAlign: {
             type: String,
             value: 'top'
+          },
+
+          /**
+           * Set to true to disable automatically closing the dropdown after
+           * a selection has been made.
+           */
+          ignoreSelect: {
+            type: Boolean,
+            value: false
           },
 
           hasContent: {
