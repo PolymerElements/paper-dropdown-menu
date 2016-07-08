@@ -95,8 +95,7 @@ respectively.
       no-animations="[[noAnimations]]"
       on-iron-select="_onIronSelect"
       on-iron-deselect="_onIronDeselect"
-      opened="{{opened}}"
-      allow-outside-scroll="[[allowOutsideScroll]]">
+      opened="{{opened}}">
       <div class="dropdown-trigger">
         <paper-ripple></paper-ripple>
         <!-- paper-input has type="text" for a11y, do not remove -->
@@ -197,17 +196,6 @@ respectively.
             notify: true,
             value: false,
             observer: '_openedChanged'
-          },
-
-          /**
-           * By default, the dropdown will constrain scrolling on the page
-           * to itself when opened.
-           * Set to true in order to prevent scroll from being constrained
-           * to the dropdown when it opens.
-           */
-          allowOutsideScroll: {
-            type: Boolean,
-            value: false
           },
 
           /**
