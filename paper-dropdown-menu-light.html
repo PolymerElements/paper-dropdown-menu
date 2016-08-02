@@ -284,6 +284,7 @@ To style it:
       on-iron-deselect="_onIronDeselect"
       opened="{{opened}}"
       close-on-activate
+      restore-focus-on-close="[[restoreFocusOnClose]]"
       allow-outside-scroll="[[allowOutsideScroll]]">
       <div class="dropdown-trigger">
         <label hidden$="[[!label]]"
@@ -407,6 +408,14 @@ To style it:
            * dropdown.
            */
           noAnimations: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+          * Whether focus should be restored to the button when the menu closes.
+          */
+          restoreFocusOnClose: {
             type: Boolean,
             value: false
           },
