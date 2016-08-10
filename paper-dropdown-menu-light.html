@@ -289,8 +289,9 @@ To style it:
       close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]">
       <div class="dropdown-trigger">
-        <label hidden$="[[!label]]"
-            class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">[[label]]</label>
+        <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
+          [[label]]
+        </label>
         <div id="input" tabindex="-1">&nbsp;</div>
         <iron-icon icon="paper-dropdown-menu:arrow-drop-down"></iron-icon>
         <span class="error">[[errorMessage]]</span>
