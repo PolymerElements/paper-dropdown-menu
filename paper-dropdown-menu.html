@@ -91,7 +91,7 @@ respectively.
       vertical-align="[[verticalAlign]]"
       horizontal-align="[[horizontalAlign]]"
       vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat)]]"
-      disabled="[[disabled]]"
+      disabled="[[_checkDisabled(disabled, readonly)]]"
       no-animations="[[noAnimations]]"
       on-iron-select="_onIronSelect"
       on-iron-deselect="_onIronDeselect"
@@ -187,7 +187,7 @@ respectively.
            * The error message to display when invalid.
            */
           errorMessage: {
-              type: String
+            type: String
           },
 
           /**
@@ -255,6 +255,15 @@ respectively.
           verticalAlign: {
             type: String,
             value: 'top'
+          },
+
+          /**
+           * If you're using PaperInputBehavior to implement your own paper-input-like
+           * element, bind this to the `<input is="iron-input">`'s `readonly` property.
+           */
+          readonly: {
+            type: Boolean,
+            observer: '_readonlyChanged'
           }
         },
 
@@ -299,7 +308,9 @@ respectively.
          * Show the dropdown content.
          */
         open: function() {
-          this.$.menuButton.open();
+          if (!this.readonly) {
+            this.$.menuButton.open();
+          }
         },
 
         /**
@@ -336,6 +347,16 @@ respectively.
           if (Polymer.Gestures.findOriginalTarget(event) === this) {
             this.open();
           }
+        },
+        
+        /**
+         * Computed the disabled state for menu-button
+         *
+         * @param {disabled} 
+         * @param {readonly} 
+         */
+        _checkDisabled: function(disabled, readonly) {
+          return disabled || readonly;
         },
 
         /**
@@ -387,6 +408,12 @@ respectively.
           var e = this.contentElement;
           if (e) {
             e.setAttribute('aria-expanded', openState);
+          }
+        },
+
+        _readonlyChanged: function(readonly) {
+          if (readonly) {
+            this.close();
           }
         }
       });
