@@ -27,6 +27,7 @@
     "iron-icon": "PolymerElements/iron-icon#^1.0.0",
     "iron-iconset-svg": "polymerelements/iron-iconset-svg#^1.0.0",
     "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#^1.0.0",
+    "iron-fit-behavior": "PolymerElements/iron-fit-behavior#^1.2.0",
     "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0",
     "paper-input": "PolymerElements/paper-input#^1.0.9",
     "paper-menu-button": "PolymerElements/paper-menu-button#^1.3.0",
