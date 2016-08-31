@@ -365,10 +365,13 @@ respectively.
           var labelValue = '';
           if (selectedItem) {
             labelValue = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
-            value = selectedItem.getAttribute('value') || selectedItem.value;
-            value = ( value || value === '') ? value : labelValue;
-          }
 
+            // Value will be either the `value` attribute, or the `value`
+            //  property, or (no choice left) the `labelValue`
+            value = selectedItem.getAttribute('value');
+            if( typeof value === 'undefined' ) value = selectedItem.value;
+            else if( typeof value === 'undefined' ) value = labelValue;
+          }
           this._setValue(value);
           this._setSelectedItemLabel(labelValue);
         },
