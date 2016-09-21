@@ -364,13 +364,13 @@ respectively.
           var value = '';
           var labelValue = '';
           if (selectedItem) {
-            labelValue = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
 
             // Value will be either the `value` attribute, or the `value`
             //  property, or (no choice left) the `labelValue`
-            value = selectedItem.getAttribute('value');
-            if( typeof value === 'undefined' ) value = selectedItem.value;
-            else if( typeof value === 'undefined' ) value = labelValue;
+            value = selectedItem.getAttribute('value') || selectedItem.value || selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim()
+
+            // Label follows the same rules as above, minus the 'value' prop/att
+            labelValue = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
           }
           this._setValue(value);
           this._setSelectedItemLabel(labelValue);
