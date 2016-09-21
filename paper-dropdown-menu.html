@@ -365,12 +365,21 @@ respectively.
           var labelValue = '';
           if (selectedItem) {
 
+            // It will return a value only if parameter is either truly or ''
+            // It actually returns an object containing the passed value or null,
+            // so that chained || will work.
+            function t( p ){ if( p || p === '' ) return { v: p }; };
+
             // Value will be either the `value` attribute, or the `value`
             //  property, or (no choice left) the `labelValue`
-            value = selectedItem.getAttribute('value') || selectedItem.value || selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim()
+            // NOTE: t() is used so that '' is considered truly
+            value = t( selectedItem.getAttribute('value') ) || t( selectedItem.value ) || t( selectedItem.label) || t( selectedItem.getAttribute('label') ) || t( selectedItem.textContent.trim() );
+            value = value.v;
 
             // Label follows the same rules as above, minus the 'value' prop/att
-            labelValue = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
+            // NOTE: t() is used so that '' is considered truly
+            labelValue = t( selectedItem.label ) || t( selectedItem.getAttribute('label') ) || t( selectedItem.textContent.trim() );
+            labelValue = labelValue.v;
           }
           this._setValue(value);
           this._setSelectedItemLabel(labelValue);
