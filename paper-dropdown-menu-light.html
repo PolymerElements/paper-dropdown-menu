@@ -473,12 +473,13 @@ To style it:
          * The content element that is contained by the dropdown menu, if any.
          */
         get contentElement() {
-          var firstChild = Polymer.dom(this.$.content).getEffectiveChildNodes()[0];
           // Ensure it is an Element (See Polymer/polymer#4047).
-          if (firstChild && firstChild.nodeType !== Node.ELEMENT_NODE) {
-            firstChild = firstChild.nextElementSibling;
+          var nodes = Polymer.dom(this.$.content).getEffectiveChildNodes();
+          for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodeType === Node.ELEMENT_NODE) {
+              return nodes[i];
+            }
           }
-          return firstChild;
         },
 
         /**
