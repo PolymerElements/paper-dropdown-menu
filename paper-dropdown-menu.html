@@ -99,7 +99,7 @@ respectively.
       opened="{{opened}}"
       close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]">
-      <div class="dropdown-trigger">
+      <div slot="dropdown-trigger">
         <paper-ripple></paper-ripple>
         <!-- paper-input has type="text" for a11y, do not remove -->
         <paper-input
@@ -116,7 +116,7 @@ respectively.
           <iron-icon icon="paper-dropdown-menu:arrow-drop-down" suffix></iron-icon>
         </paper-input>
       </div>
-      <content id="content" select=".dropdown-content"></content>
+      <slot id="content"></slot>
     </paper-menu-button>
   </template>
 
@@ -303,7 +303,12 @@ respectively.
          * The content element that is contained by the dropdown menu, if any.
          */
         get contentElement() {
-          return Polymer.dom(this.$.content).getDistributedNodes()[0];
+          var firstChild = Polymer.dom(this.$.content).getEffectiveChildNodes()[0];
+          // Ensure it is an Element (See Polymer/polymer#4047).
+          if (firstChild && firstChild.nodeType !== Node.ELEMENT_NODE) {
+            firstChild = firstChild.nextElementSibling;
+          }
+          return firstChild;
         },
 
         /**

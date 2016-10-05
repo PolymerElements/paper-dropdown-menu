@@ -109,46 +109,46 @@ To style it:
       /**
        * All of these styles below are for styling the fake-input display
        */
-      .dropdown-trigger {
+      [slot="dropdown-trigger"] {
         box-sizing: border-box;
         position: relative;
         width: 100%;
         padding: 16px 0 8px 0;
       }
 
-      :host([disabled]) .dropdown-trigger {
+      :host([disabled]) [slot="dropdown-trigger"] {
         pointer-events: none;
         opacity: var(--paper-dropdown-menu-disabled-opacity, 0.33);
       }
 
-      :host([no-label-float]) .dropdown-trigger {
+      :host([no-label-float]) [slot="dropdown-trigger"] {
         padding-top: 8px;   /* If there's no label, we need less space up top. */
       }
 
       #input {
-        @apply(--paper-font-subhead);
-        @apply(--paper-font-common-nowrap);
+        @apply --paper-font-subhead;
+        @apply --paper-font-common-nowrap;
         line-height: 1.5;
-        border-bottom: 1px solid var(--paper-dropdown-menu-color, --secondary-text-color);
-        color: var(--paper-dropdown-menu-color, --primary-text-color);
+        border-bottom: 1px solid var(--paper-dropdown-menu-color, var(--secondary-text-color));
+        color: var(--paper-dropdown-menu-color, var(--primary-text-color));
         width: 100%;
         box-sizing: border-box;
         padding: 12px 20px 0 0;   /* Right padding so that text doesn't overlap the icon */
         outline: none;
-        @apply(--paper-dropdown-menu-input);
+        @apply --paper-dropdown-menu-input;
       }
 
-      :host-context([dir="rtl"]) #input {
+      :host(:dir(rtl)) #input {
         padding-right: 0px;
         padding-left: 20px;
       }
 
       :host([disabled]) #input {
-        border-bottom: 1px dashed var(--paper-dropdown-menu-color, --secondary-text-color);
+        border-bottom: 1px dashed var(--paper-dropdown-menu-color, var(--secondary-text-color));
       }
 
       :host([invalid]) #input {
-        border-bottom: 2px solid var(--paper-dropdown-error-color, --error-color);
+        border-bottom: 2px solid var(--paper-dropdown-error-color, var(--error-color));
       }
 
       :host([no-label-float]) #input {
@@ -156,8 +156,8 @@ To style it:
       }
 
       label {
-        @apply(--paper-font-subhead);
-        @apply(--paper-font-common-nowrap);
+        @apply --paper-font-subhead;
+        @apply --paper-font-common-nowrap;
         display: block;
         position: absolute;
         bottom: 0;
@@ -174,11 +174,11 @@ To style it:
         text-align: left;
         transition-duration: .2s;
         transition-timing-function: cubic-bezier(.4,0,.2,1);
-        color: var(--paper-dropdown-menu-color, --secondary-text-color);
-        @apply(--paper-dropdown-menu-label);
+        color: var(--paper-dropdown-menu-color, var(--secondary-text-color));
+        @apply --paper-dropdown-menu-label;
       }
 
-      :host-context([dir="rtl"]) label {
+      :host(:dir(rtl)) label {
         padding-right: 0px;
         padding-left: 20px;
       }
@@ -200,11 +200,11 @@ To style it:
       }
 
       :host([focused]) label.label-is-floating {
-        color: var(--paper-dropdown-menu-focus-color, --primary-color);
+        color: var(--paper-dropdown-menu-focus-color, var(--primary-color));
       }
 
       :host([invalid]) label.label-is-floating {
-        color: var(--paper-dropdown-error-color, --error-color);
+        color: var(--paper-dropdown-error-color, var(--error-color));
       }
 
       /**
@@ -212,7 +212,7 @@ To style it:
        * visible when it's focused.
        */
       label:after {
-        background-color: var(--paper-dropdown-menu-focus-color, --primary-color);
+        background-color: var(--paper-dropdown-menu-focus-color, var(--primary-color));
         bottom: 7px;    /* The container has an 8px bottom padding */
         content: '';
         height: 2px;
@@ -226,7 +226,7 @@ To style it:
       }
 
       :host([invalid]) label:after {
-        background-color: var(--paper-dropdown-error-color, --error-color);
+        background-color: var(--paper-dropdown-error-color, var(--error-color));
       }
 
       :host([no-label-float]) label:after {
@@ -243,12 +243,12 @@ To style it:
         position: absolute;
         right: 0px;
         bottom: 8px;    /* The container has an 8px bottom padding */
-        @apply(--paper-font-subhead);
+        @apply --paper-font-subhead;
         color: var(--disabled-text-color);
-        @apply(--paper-dropdown-menu-icon);
+        @apply --paper-dropdown-menu-icon;
       }
 
-      :host-context([dir="rtl"]) iron-icon {
+      :host(:dir(rtl)) iron-icon {
         left: 0;
         right: auto;
       }
@@ -260,8 +260,8 @@ To style it:
       .error {
         display: inline-block;
         visibility: hidden;
-        color: var(--paper-dropdown-error-color, --error-color);
-        @apply(--paper-font-caption);
+        color: var(--paper-dropdown-error-color, var(--error-color));
+        @apply --paper-font-caption;
         position: absolute;
         left:0;
         right:0;
@@ -287,7 +287,7 @@ To style it:
       opened="{{opened}}"
       close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]">
-      <div class="dropdown-trigger">
+      <div slot="dropdown-trigger">
         <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>
@@ -295,7 +295,7 @@ To style it:
         <iron-icon icon="paper-dropdown-menu:arrow-drop-down"></iron-icon>
         <span class="error">[[errorMessage]]</span>
       </div>
-      <content id="content" select=".dropdown-content"></content>
+      <slot id="content"></slot>
     </paper-menu-button>
   </template>
 
@@ -473,7 +473,12 @@ To style it:
          * The content element that is contained by the dropdown menu, if any.
          */
         get contentElement() {
-          return Polymer.dom(this.$.content).getDistributedNodes()[0];
+          var firstChild = Polymer.dom(this.$.content).getEffectiveChildNodes()[0];
+          // Ensure it is an Element (See Polymer/polymer#4047).
+          if (firstChild && firstChild.nodeType !== Node.ELEMENT_NODE) {
+            firstChild = firstChild.nextElementSibling;
+          }
+          return firstChild;
         },
 
         /**
