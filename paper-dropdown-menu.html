@@ -135,6 +135,14 @@ respectively.
         ],
 
         properties: {
+
+         /**
+          * Set to true to auto-validate the input value when it changes.
+          */
+          autoValidate: {
+            type: Boolean
+          },
+
           /**
            * The derived "label" of the currently selected item. This value
            * is the `label` property on the selected item if set, or else the
@@ -365,6 +373,16 @@ respectively.
 
           this._setValue(value);
           this._setSelectedItemLabel(value);
+
+          if( this.autoValidate ){
+            var valid;
+            if (this.validate) {
+              valid = this.validate();
+            } else {
+              valid = this.checkValidity();
+            }
+            this.invalid = !valid;
+          }
         },
 
         /**
