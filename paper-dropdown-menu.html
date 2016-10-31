@@ -366,11 +366,32 @@ respectively.
           if (!selectedItem) {
             value = '';
           } else {
-            value = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
+            value = selectedItem.label || selectedItem.getAttribute('label') || this._getTextContent(selectedItem);
           }
 
           this._setValue(value);
           this._setSelectedItemLabel(value);
+        },
+
+        _getLocalTextContent: function(root) {
+          var result = "";
+          var nodes = root.querySelectorAll("*:not(style)");
+          for (var i = 0; i < nodes.length; i++) {
+            result += nodes[i].textContent.trim();
+          }
+          return result;
+        },
+
+        _getTextContent: function(el) {
+          if (el.root) {
+            var content = this._getLocalTextContent(el.root);
+            var effectiveChildren = Polymer.dom(el).getEffectiveChildNodes();
+            for (var i = 0; i < effectiveChildren.length; i++) {
+              content += this._getTextContent(effectiveChildren[i]);
+            }
+            return content;
+          }
+          return el.textContent.trim();
         },
 
         /**

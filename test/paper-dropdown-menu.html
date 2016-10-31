@@ -60,6 +60,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <dom-module id="nested-element">
+    <template>
+      <span>Hello,</span>
+      <slot></slot>
+    </template>
+    <script>
+    HTMLImports.whenReady(function() {
+      class NestedElement extends Polymer.Element {
+        static get is() { return 'nested-element'; }
+      }
+      customElements.define(NestedElement.is, NestedElement);
+    });
+    </script>
+  </dom-module>
+
+  <test-fixture id="NestedDropdownMenu">
+    <template>
+      <paper-dropdown-menu no-animations>
+        <paper-listbox class="dropdown-content">
+          <paper-item>
+            <nested-element><span>Foo</span></nested-element>
+          </paper-item>
+          <paper-item>
+            <nested-element><span>Bar</span></nested-element>
+          </paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </template>
+  </test-fixture>
+
   <script>
 
     function runAfterOpen(menu, callback) {
@@ -210,6 +240,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
           menu.selected = 2;
           expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo textContent');
+        });
+
+        test('nested textContent', function() {
+          var dropdownMenu = fixture('NestedDropdownMenu');
+          var menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
+          menu.selected = 1;
+          expect(dropdownMenu.selectedItemLabel).to.be.equal('Hello,Bar');
         });
       });
     });
