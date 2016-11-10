@@ -434,7 +434,8 @@ To style it:
 
           hasContent: {
             type: Boolean,
-            readOnly: true
+            readOnly: true,
+            observer: '_hasContentChanged'
           }
         },
 
@@ -589,6 +590,12 @@ To style it:
             this.$.input.textContent = this.value;
           }
           this._setHasContent(!!this.value);
+        },
+
+        _hasContentChanged: function (hasContent) {
+          if (!hasContent && this.$.input){
+            this.$.input.innerHTML = "&nbsp;";
+          }
         },
       });
     })();
