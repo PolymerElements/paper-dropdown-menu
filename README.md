@@ -133,6 +133,7 @@ The following custom properties and mixins are also available for styling:
 | `--paper-dropdown-error-color` | The color of the label/underline when the dropdown is invalid | `--error-color` |
 | `--paper-dropdown-menu-label` | Mixin applied to the label | `{}` |
 | `--paper-dropdown-menu-input` | Mixin appled to the input | `{}` |
+| `--paper-dropdown-menu-trigger` | Mixin appled to the dropdown trigger | `{}` |
 
 Note that in this element, the underline is just the bottom border of the "input".
 To style it:
