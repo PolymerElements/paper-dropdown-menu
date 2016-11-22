@@ -71,10 +71,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     suite('<paper-dropdown-menu-light>', function() {
       var dropdownMenu;
+      var content;
 
       setup(function() {
         dropdownMenu = fixture('TrivialDropdownMenu');
         content = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
+        Polymer.dom.flush();
       });
 
       test('opens when tapped', function(done) {
@@ -152,6 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('validation', function() {
         test('a non required dropdown is valid regardless of its selection', function() {
           var dropdownMenu = fixture('TrivialDropdownMenu');
+          Polymer.dom.flush();
           menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
 
           // no selection.
@@ -168,6 +171,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('a required dropdown is invalid without a selection', function() {
           var dropdownMenu = fixture('TrivialDropdownMenu');
+          Polymer.dom.flush();
           dropdownMenu.required = true;
 
           // no selection.
@@ -189,9 +193,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       suite('selectedItemLabel', function() {
+        var dropdownMenu;
+        var menu;
+
+        setup(function() {
+          dropdownMenu = fixture('LabelsDropdownMenu');
+          menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
+          Polymer.dom.flush();
+        });
+
         test('label property', function() {
-          var dropdownMenu = fixture('LabelsDropdownMenu');
-          var menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
           menu.selected = 0;
           //Fake a label property since paper-item doesn't have one
           dropdownMenu.selectedItem.label = dropdownMenu.selectedItem.getAttribute('label');
@@ -199,15 +210,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('label attribute', function() {
-          var dropdownMenu = fixture('LabelsDropdownMenu');
-          var menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
           menu.selected = 1;
           expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label attribute');
         });
 
         test('textContent', function() {
-          var dropdownMenu = fixture('LabelsDropdownMenu');
-          var menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
           menu.selected = 2;
           expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo textContent');
         });
