@@ -13,7 +13,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="UTF-8">
   <title>paper-dropdown-menu basic tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
@@ -70,13 +69,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     suite('<paper-dropdown-menu>', function() {
-      var dropdownMenu;
+      var menu;
       var content;
 
       setup(function() {
-        dropdownMenu = fixture('TrivialDropdownMenu');
-        content = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
-        Polymer.dom.flush();
+        menu = fixture('TrivialDropdownMenu');
+        content = Polymer.dom(menu).querySelector('.dropdown-content');
       });
 
       test('opens when tapped', function(done) {
@@ -85,40 +83,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         expect(contentRect.width).to.be.equal(0);
         expect(contentRect.height).to.be.equal(0);
 
-        runAfterOpen(dropdownMenu, function() {
+        runAfterOpen(menu, function() {
           contentRect = content.getBoundingClientRect();
 
-          expect(dropdownMenu.opened).to.be.equal(true);
+          expect(menu.opened).to.be.equal(true);
 
           expect(contentRect.width).to.be.greaterThan(0);
           expect(contentRect.height).to.be.greaterThan(0);
           done();
         });
 
-        expect(dropdownMenu.opened).to.be.equal(true);
+        expect(menu.opened).to.be.equal(true);
       });
 
       test('closes when an item is activated', function(done) {
-        runAfterOpen(dropdownMenu, function() {
+        runAfterOpen(menu, function() {
           var firstItem = Polymer.dom(content).querySelector('paper-item');
 
           MockInteractions.tap(firstItem);
 
           Polymer.Base.async(function() {
-            expect(dropdownMenu.opened).to.be.equal(false);
+            expect(menu.opened).to.be.equal(false);
             done();
           });
         });
       });
 
       test('sets selected item to the activated item', function(done) {
-        runAfterOpen(dropdownMenu, function() {
+        runAfterOpen(menu, function() {
           var firstItem = Polymer.dom(content).querySelector('paper-item');
 
           MockInteractions.tap(firstItem);
 
           Polymer.Base.async(function() {
-            expect(dropdownMenu.selectedItem).to.be.equal(firstItem);
+            expect(menu.selectedItem).to.be.equal(firstItem);
             done();
           });
         });
@@ -126,97 +124,85 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       suite('when a value is preselected', function() {
         setup(function() {
-          dropdownMenu = fixture('PreselectedDropdownMenu');
+          menu = fixture('PreselectedDropdownMenu');
         });
 
         test('the input area shows the correct selection', function() {
-          Polymer.dom.flush();
-          var secondItem = Polymer.dom(dropdownMenu).querySelectorAll('paper-item')[1];
-          expect(dropdownMenu.selectedItem).to.be.equal(secondItem);
+          var secondItem = Polymer.dom(menu).querySelectorAll('paper-item')[1];
+          expect(menu.selectedItem).to.be.equal(secondItem);
         });
       });
 
       suite('deselecting', function() {
-        var menu;
-
         setup(function() {
-          dropdownMenu = fixture('PreselectedDropdownMenu');
-          menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
+          menu = fixture('PreselectedDropdownMenu');
+          content = Polymer.dom(menu).querySelector('.dropdown-content');
         });
 
         test('an `iron-deselect` event clears the current selection', function() {
-          Polymer.dom.flush();
-          menu.selected = null;
-          expect(dropdownMenu.selectedItem).to.be.equal(null);
+          content.selected = null;
+          expect(menu.selectedItem).to.be.equal(null);
         });
       });
 
       suite('validation', function() {
         test('a non required dropdown is valid regardless of its selection', function() {
-          var dropdownMenu = fixture('TrivialDropdownMenu');
-          Polymer.dom.flush();
-          menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
+          menu = fixture('TrivialDropdownMenu');
+          content = Polymer.dom(menu).querySelector('.dropdown-content');
 
           // no selection.
-          expect(dropdownMenu.validate()).to.be.true;
-          expect(dropdownMenu.invalid).to.be.false;
-          expect(dropdownMenu.value).to.not.be.ok;
+          expect(menu.validate()).to.be.true;
+          expect(menu.invalid).to.be.false;
+          expect(menu.value).to.not.be.ok;
 
           // some selection.
-          menu.selected = 1;
-          expect(dropdownMenu.validate()).to.be.true;
-          expect(dropdownMenu.invalid).to.be.false;
-          expect(dropdownMenu.value).to.be.equal('Bar');
+          content.selected = 1;
+          expect(menu.validate()).to.be.true;
+          expect(menu.invalid).to.be.false;
+          expect(menu.value).to.be.equal('Bar');
         });
 
         test('a required dropdown is invalid without a selection', function() {
-          var dropdownMenu = fixture('TrivialDropdownMenu');
-          Polymer.dom.flush();
-          dropdownMenu.required = true;
+          menu = fixture('TrivialDropdownMenu');
+          menu.required = true;
 
           // no selection.
-          expect(dropdownMenu.validate()).to.be.false;
-          expect(dropdownMenu.invalid).to.be.true;
-          expect(dropdownMenu.value).to.not.be.ok;
+          expect(menu.validate()).to.be.false;
+          expect(menu.invalid).to.be.true;
+          expect(menu.value).to.not.be.ok;
         });
 
         test('a required dropdown is valid with a selection', function() {
-          var dropdownMenu = fixture('PreselectedDropdownMenu');
-          Polymer.dom.flush();
+          menu = fixture('PreselectedDropdownMenu');
+          menu.required = true;
 
-          dropdownMenu.required = true;
-
-          expect(dropdownMenu.validate()).to.be.true;
-          expect(dropdownMenu.invalid).to.be.false;
-          expect(dropdownMenu.value).to.be.equal('Bar');
+          expect(menu.validate()).to.be.true;
+          expect(menu.invalid).to.be.false;
+          expect(menu.value).to.be.equal('Bar');
         });
       });
 
       suite('selectedItemLabel', function() {
-        var dropdownMenu;
-        var menu;
-
         setup(function() {
-          dropdownMenu = fixture('LabelsDropdownMenu');
-          menu = Polymer.dom(dropdownMenu).querySelector('.dropdown-content');
-          Polymer.dom.flush();
+          menu = fixture('LabelsDropdownMenu');
+          content = Polymer.dom(menu).querySelector('.dropdown-content');
         });
 
         test('label property', function() {
-          menu.selected = 0;
+          content.selected = 0;
           //Fake a label property since paper-item doesn't have one
-          dropdownMenu.selectedItem.label = dropdownMenu.selectedItem.getAttribute('label');
-          expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label property');
+          menu.selectedItem.label = menu.selectedItem.getAttribute('label');
+          expect(menu.selectedItemLabel).to.be.equal('Foo label property');
         });
 
         test('label attribute', function() {
-          menu.selected = 1;
-          expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label attribute');
+          content.selected = 1;
+          expect(menu.selectedItemLabel).to.be.equal('Foo label attribute');
         });
 
         test('textContent', function() {
-          menu.selected = 2;
-          expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo textContent');
+          content.selected = 2;
+          expect(menu.selectedItemLabel).to.be.equal('Foo textContent');
         });
       });
     });
