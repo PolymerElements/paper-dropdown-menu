@@ -23,7 +23,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#2.0-preview",
     "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#2.0-preview",
-    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#^1.0.0",
+    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#2.0-preview",
     "iron-icon": "PolymerElements/iron-icon#2.0-preview",
     "iron-iconset-svg": "polymerelements/iron-iconset-svg#2.0-preview",
     "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#2.0-preview",
@@ -74,18 +74,6 @@
   },
   "ignore": [],
   "resolutions": {
-    "polymer": "2.0-preview",
-    "paper-styles": "2.0-preview",
-    "iron-a11y-keys-behavior": "2.0-preview",
-    "webcomponentsjs": "v1",
-    "test-fixture": "custom-elements-v1",
-    "iron-icon": "2.0-preview",
-    "paper-behaviors": "2.0-preview",
-    "paper-ripple": "2.0-preview",
-    "iron-validatable-behavior": "2.0-preview",
-    "iron-behaviors": "2.0-preview",
-    "iron-flex-layout": "2.0-preview",
-    "iron-meta": "2.0-preview",
-    "iron-checked-element-behavior": "2.0-preview"
+    "test-fixture": "custom-elements-v1"
   }
 }
