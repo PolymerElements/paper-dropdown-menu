@@ -97,6 +97,7 @@ respectively.
       on-iron-select="_onIronSelect"
       on-iron-deselect="_onIronDeselect"
       opened="{{opened}}"
+      fit-into="[[fitInto]]"
       close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]">
       <div class="dropdown-trigger">
@@ -256,6 +257,13 @@ respectively.
           verticalAlign: {
             type: String,
             value: 'top'
+          },
+
+          /**
+           * The element to fit `this` into.
+           */
+          fitInto: {
+            type: Object
           },
 
           /**

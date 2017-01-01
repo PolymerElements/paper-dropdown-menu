@@ -285,6 +285,7 @@ To style it:
       no-animations="[[noAnimations]]"
       on-iron-select="_onIronSelect"
       on-iron-deselect="_onIronDeselect"
+      fit-into="[[fitInto]]"
       opened="{{opened}}"
       close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]">
@@ -422,6 +423,13 @@ To style it:
           horizontalAlign: {
             type: String,
             value: 'right'
+          },
+
+          /**
+           * The element to fit `this` into.
+           */
+          fitInto: {
+            type: Object
           },
 
           /**
