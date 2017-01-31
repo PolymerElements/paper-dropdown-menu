@@ -287,7 +287,8 @@ To style it:
       on-iron-deselect="_onIronDeselect"
       opened="{{opened}}"
       close-on-activate
-      allow-outside-scroll="[[allowOutsideScroll]]">
+      allow-outside-scroll="[[allowOutsideScroll]]"
+      restore-focus-on-close="[[restoreFocusOnClose]]">
       <div class="dropdown-trigger">
         <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
@@ -436,7 +437,15 @@ To style it:
           hasContent: {
             type: Boolean,
             readOnly: true
-          }
+          },
+
+          /**
+           * Whether focus should be restored to the dropdown when the menu closes.
+           */
+          restoreFocusOnClose: {
+            type: Boolean,
+            value: true
+          },
         },
 
         listeners: {
