@@ -111,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       test('sets selected item to the activated item', function(done) {
-          runAfterOpen(menu, function() {
+        runAfterOpen(menu, function() {
           var firstItem = Polymer.dom(content).querySelector('paper-item');
 
           MockInteractions.tap(firstItem);
@@ -129,6 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('the input area shows the correct selection', function() {
+          !Polymer.Element && Polymer.dom.flush();
           var secondItem = Polymer.dom(menu).querySelectorAll('paper-item')[1];
           expect(menu.selectedItem).to.be.equal(secondItem);
         });
@@ -141,6 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('an `iron-deselect` event clears the current selection', function() {
+          !Polymer.Element && Polymer.dom.flush();
           content.selected = null;
           expect(menu.selectedItem).to.be.equal(null);
         });
@@ -175,6 +177,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('a required dropdown is valid with a selection', function() {
           menu = fixture('PreselectedDropdownMenu');
+          !Polymer.Element && Polymer.dom.flush();
+
           menu.required = true;
 
           expect(menu.validate()).to.be.true;

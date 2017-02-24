@@ -110,19 +110,19 @@ To style it:
       /**
        * All of these styles below are for styling the fake-input display
        */
-      [slot="dropdown-trigger"] {
+      .dropdown-trigger {
         box-sizing: border-box;
         position: relative;
         width: 100%;
         padding: 16px 0 8px 0;
       }
 
-      :host([disabled]) [slot="dropdown-trigger"] {
+      :host([disabled]) .dropdown-trigger {
         pointer-events: none;
         opacity: var(--paper-dropdown-menu-disabled-opacity, 0.33);
       }
 
-      :host([no-label-float]) [slot="dropdown-trigger"] {
+      :host([no-label-float]) .dropdown-trigger {
         padding-top: 8px;   /* If there's no label, we need less space up top. */
       }
 
@@ -288,7 +288,8 @@ To style it:
       opened="{{opened}}"
       close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]">
-      <div slot="dropdown-trigger">
+      <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
+      <div class="dropdown-trigger" slot="dropdown-trigger">
         <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>

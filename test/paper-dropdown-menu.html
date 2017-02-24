@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="UTF-8">
   <title>paper-dropdown-menu basic tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
@@ -22,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-item/paper-item.html">
   <link rel="import" href="../../test-fixture/test-fixture.html">
   <link rel="import" href="../paper-dropdown-menu.html">
+
 </head>
 <body>
 
@@ -128,6 +130,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('the input area shows the correct selection', function() {
+          !Polymer.Element && Polymer.dom.flush();
           var secondItem = Polymer.dom(menu).querySelectorAll('paper-item')[1];
           expect(menu.selectedItem).to.be.equal(secondItem);
         });
@@ -140,6 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('an `iron-deselect` event clears the current selection', function() {
+          !Polymer.Element && Polymer.dom.flush();
           content.selected = null;
           expect(menu.selectedItem).to.be.equal(null);
         });
@@ -174,6 +178,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('a required dropdown is valid with a selection', function() {
           menu = fixture('PreselectedDropdownMenu');
+          !Polymer.Element && Polymer.dom.flush();
+
           menu.required = true;
 
           expect(menu.validate()).to.be.true;
