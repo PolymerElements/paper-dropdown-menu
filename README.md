@@ -34,7 +34,7 @@ Material design: [Dropdown menus](https://www.google.com/design/spec/components/
 -->
 ```html
 <paper-dropdown-menu label="Dinosaurs">
-  <paper-listbox slot="dropdown-content" class="dropdown-content" selected="1">
+  <paper-listbox slot="dropdown-content" selected="1">
     <paper-item>allosaurus</paper-item>
     <paper-item>brontosaurus</paper-item>
     <paper-item>carcharodontosaurus</paper-item>
