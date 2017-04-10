@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="TrivialDropdownMenu">
     <template>
       <paper-dropdown-menu no-animations>
-        <paper-listbox class="dropdown-content">
+        <paper-listbox slot="dropdown-content" class="dropdown-content">
           <paper-item>Foo</paper-item>
           <paper-item>Bar</paper-item>
         </paper-listbox>
@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="PreselectedDropdownMenu">
     <template>
       <paper-dropdown-menu no-animations>
-        <paper-listbox class="dropdown-content" selected="1">
+        <paper-listbox slot="dropdown-content" class="dropdown-content" selected="1">
           <paper-item>Foo</paper-item>
           <paper-item>Bar</paper-item>
         </paper-listbox>
@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="LabelsDropdownMenu">
     <template>
       <paper-dropdown-menu no-animations>
-        <paper-listbox class="dropdown-content">
+        <paper-listbox slot="dropdown-content" class="dropdown-content">
           <paper-item label="Foo label property">Foo textContent</paper-item>
           <paper-item label="Foo label attribute">Foo textContent</paper-item>
           <paper-item>Foo textContent</paper-item>

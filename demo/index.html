@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Dinosaurs">
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -58,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Dinosaurs (light)">
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Dinosaurs">
-          <paper-listbox class="dropdown-content" selected="1">
+          <paper-listbox slot="dropdown-content" class="dropdown-content" selected="1">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -81,7 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Dinosaurs (light)">
-          <paper-listbox class="dropdown-content" selected="1">
+          <paper-listbox slot="dropdown-content" class="dropdown-content" selected="1">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -95,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Upwards and to the left!" vertical-align="bottom" horizontal-align="left">
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -104,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Upwards and to the left! (light)" vertical-align="bottom" horizontal-align="left">
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -119,7 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Disabled dinosaurs" disabled>
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -128,7 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Disabled dinosaurs (light)" disabled>
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -144,7 +144,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template>
         <template is="dom-bind" id="Demo">
           <paper-dropdown-menu label="Dinosaurs">
-            <paper-listbox class="dropdown-content">
+            <paper-listbox slot="dropdown-content" class="dropdown-content">
               <template is="dom-repeat" items='[[dinosaurs]]' as="dinosaur">
                 <paper-item>[[dinosaur]]</paper-item>
               </template>
@@ -158,7 +158,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Menu tabs!?">
-          <paper-tabs class="dropdown-content">
+          <paper-tabs slot="dropdown-content" class="dropdown-content">
             <paper-tab>cheddar</paper-tab>
             <paper-tab>stilton</paper-tab>
             <paper-tab>emmental</paper-tab>
@@ -166,7 +166,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Menu tabs!? (light)">
-          <paper-tabs class="dropdown-content">
+          <paper-tabs slot="dropdown-content" class="dropdown-content">
             <paper-tab>cheddar</paper-tab>
             <paper-tab>stilton</paper-tab>
             <paper-tab>emmental</paper-tab>
@@ -179,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Dinosaurs" noink no-animations>
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -188,7 +188,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Dinosaurs (light)" noink no-animations>
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -239,7 +239,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
         </style>
         <paper-dropdown-menu class="custom" label="Custom" no-label-float>
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -248,7 +248,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light class="custom" label="Custom (light)" no-label-float>
-          <paper-listbox class="dropdown-content">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>

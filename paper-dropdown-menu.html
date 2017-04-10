@@ -34,7 +34,7 @@ displayed instead.
 Example:
 
     <paper-dropdown-menu label="Your favourite pastry">
-      <paper-listbox class="dropdown-content">
+      <paper-listbox slot="dropdown-content" class="dropdown-content">
         <paper-item>Croissant</paper-item>
         <paper-item>Donut</paper-item>
         <paper-item>Financier</paper-item>
@@ -119,7 +119,7 @@ respectively.
           <iron-icon icon="paper-dropdown-menu:arrow-drop-down" suffix slot="suffix"></iron-icon>
         </paper-input>
       </div>
-      <slot id="content"></slot>
+      <slot id="content" name="dropdown-content" slot="dropdown-content"></slot>
     </paper-menu-button>
   </template>
 
