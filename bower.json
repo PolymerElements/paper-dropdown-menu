@@ -40,7 +40,6 @@
     "paper-item": "PolymerElements/paper-item#2.0-preview",
     "paper-listbox": "PolymerElements/paper-listbox#2.0-preview",
     "paper-tabs": "PolymerElements/paper-tabs#2.0-preview",
-    "test-fixture": "PolymerElements/test-fixture#^3.0.0-rc.1",
     "web-component-tester": "^6.0.0-prerelease.6",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.1"
   },
@@ -66,7 +65,6 @@
         "paper-item": "PolymerElements/paper-item#^1.0.0",
         "paper-listbox": "PolymerElements/paper-listbox#^1.0.0",
         "paper-tabs": "PolymerElements/paper-tabs#^1.0.0",
-        "test-fixture": "PolymerElements/test-fixture#^1.0.0",
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
       }

@@ -21,7 +21,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../../paper-listbox/paper-listbox.html">
   <link rel="import" href="../../paper-item/paper-item.html">
-  <link rel="import" href="../../test-fixture/test-fixture.html">
   <link rel="import" href="../paper-dropdown-menu-light.html">
 </head>
 <body>
@@ -124,73 +123,90 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       suite('when a value is preselected', function() {
-        setup(function() {
+        setup(function(done) {
           menu = fixture('PreselectedDropdownMenu');
+          // Wait for distribution.
+          setTimeout(function(){
+            done();
+          });
         });
 
         test('the input area shows the correct selection', function() {
-          !Polymer.Element && Polymer.dom.flush();
           var secondItem = Polymer.dom(menu).querySelectorAll('paper-item')[1];
           expect(menu.selectedItem).to.be.equal(secondItem);
         });
       });
 
       suite('deselecting', function() {
-        setup(function() {
+        setup(function(done) {
           menu = fixture('PreselectedDropdownMenu');
           content = Polymer.dom(menu).querySelector('.dropdown-content');
+          // Wait for distribution.
+          setTimeout(function(){
+            done();
+          });
         });
 
         test('an `iron-deselect` event clears the current selection', function() {
-          !Polymer.Element && Polymer.dom.flush();
           content.selected = null;
           expect(menu.selectedItem).to.be.equal(null);
         });
       });
 
       suite('validation', function() {
-        test('a non required dropdown is valid regardless of its selection', function() {
+        test('a non required dropdown is valid regardless of its selection', function(done) {
           menu = fixture('TrivialDropdownMenu');
           content = Polymer.dom(menu).querySelector('.dropdown-content');
+          // Wait for distribution.
+          setTimeout(function() {
+            // no selection.
+            expect(menu.validate()).to.be.true;
+            expect(menu.invalid).to.be.false;
+            expect(menu.value).to.not.be.ok;
 
-          // no selection.
-          expect(menu.validate()).to.be.true;
-          expect(menu.invalid).to.be.false;
-          expect(menu.value).to.not.be.ok;
-
-          // some selection.
-          content.selected = 1;
-          expect(menu.validate()).to.be.true;
-          expect(menu.invalid).to.be.false;
-          expect(menu.value).to.be.equal('Bar');
+            // some selection.
+            content.selected = 1;
+            expect(menu.validate()).to.be.true;
+            expect(menu.invalid).to.be.false;
+            expect(menu.value).to.be.equal('Bar');
+            done();
+          });
         });
 
-        test('a required dropdown is invalid without a selection', function() {
+        test('a required dropdown is invalid without a selection', function(done) {
           menu = fixture('TrivialDropdownMenu');
-          menu.required = true;
-
-          // no selection.
-          expect(menu.validate()).to.be.false;
-          expect(menu.invalid).to.be.true;
-          expect(menu.value).to.not.be.ok;
+          // Wait for distribution.
+          setTimeout(function() {
+            menu.required = true;
+            // no selection.
+            expect(menu.validate()).to.be.false;
+            expect(menu.invalid).to.be.true;
+            expect(menu.value).to.not.be.ok;
+            done();
+          });
         });
 
-        test('a required dropdown is valid with a selection', function() {
+        test('a required dropdown is valid with a selection', function(done) {
           menu = fixture('PreselectedDropdownMenu');
-          !Polymer.Element && Polymer.dom.flush();
-
-          menu.required = true;
-
-          expect(menu.validate()).to.be.true;
-          expect(menu.invalid).to.be.false;
-          expect(menu.value).to.be.equal('Bar');
+          // Wait for distribution.
+          setTimeout(function() {
+            menu.required = true;
+            expect(menu.validate()).to.be.true;
+            expect(menu.invalid).to.be.false;
+            expect(menu.value).to.be.equal('Bar');
+            done();
+          });
         });
       });
 
       suite('selectedItemLabel', function() {
-        setup(function() {
+        setup(function(done) {
           menu = fixture('LabelsDropdownMenu');
           content = Polymer.dom(menu).querySelector('.dropdown-content');
+          // Wait for distribution.
+          setTimeout(function(){
+            done();
+          });
         });
 
         test('label property', function() {
