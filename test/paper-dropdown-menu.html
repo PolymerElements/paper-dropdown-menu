@@ -75,7 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       setup(function() {
         menu = fixture('TrivialDropdownMenu');
-        content = Polymer.dom(menu).querySelector('.dropdown-content');
+        content = Polymer.dom(menu).querySelector('[slot="dropdown-content"]');
       });
 
       test('opens when tapped', function(done) {
@@ -141,7 +141,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('deselecting', function() {
         setup(function(done) {
           menu = fixture('PreselectedDropdownMenu');
-          content = Polymer.dom(menu).querySelector('.dropdown-content');
+          content = Polymer.dom(menu).querySelector('[slot="dropdown-content"]');
           // Wait for distribution.
           setTimeout(function() {
             done();
@@ -157,7 +157,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('validation', function() {
         test('a non required dropdown is valid regardless of its selection', function(done) {
           menu = fixture('TrivialDropdownMenu');
-          content = Polymer.dom(menu).querySelector('.dropdown-content');
+          content = Polymer.dom(menu).querySelector('[slot="dropdown-content"]');
           // Wait for distribution.
           setTimeout(function() {
             // no selection.
@@ -203,7 +203,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('selectedItemLabel', function() {
         setup(function(done) {
           menu = fixture('LabelsDropdownMenu');
-          content = Polymer.dom(menu).querySelector('.dropdown-content');
+          content = Polymer.dom(menu).querySelector('[slot="dropdown-content"]');
           // Wait for distribution.
           setTimeout(function() {
             done();
