@@ -139,6 +139,8 @@ To style it:
         @apply --paper-dropdown-menu-input;
       }
 
+      /* Keep :host-context() to make it work where :dir doesn't exist */
+      :host-context([dir="rtl"]) #input,
       :host(:dir(rtl)) #input {
         padding-right: 0px;
         padding-left: 20px;
@@ -179,6 +181,8 @@ To style it:
         @apply --paper-dropdown-menu-label;
       }
 
+      /* Keep :host-context() to make it work where :dir doesn't exist */
+      :host-context([dir="rtl"]) label,
       :host(:dir(rtl)) label {
         padding-right: 0px;
         padding-left: 20px;
@@ -249,6 +253,8 @@ To style it:
         @apply --paper-dropdown-menu-icon;
       }
 
+      /* Keep :host-context() to make it work where :dir doesn't exist */
+      :host-context([dir="rtl"]) iron-icon,
       :host(:dir(rtl)) iron-icon {
         left: 0;
         right: auto;
