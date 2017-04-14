@@ -314,12 +314,13 @@ respectively.
          * The content element that is contained by the dropdown menu, if any.
          */
         get contentElement() {
+          // Polymer 2.x returns slot.assignedNodes which can contain text nodes.
           var nodes = Polymer.dom(this.$.content).getDistributedNodes();
-          var i = 0;
-          while (nodes[i] && nodes[i].nodeType !== Node.ELEMENT_NODE) {
-            i++;
+          for (var i = 0, l = nodes.length; i < l; i++) {
+            if (nodes[i].nodeType === Node.ELEMENT_NODE) {
+              return nodes[i];
+            }
           }
-          return nodes[i];
         },
 
         /**
