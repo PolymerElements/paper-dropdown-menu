@@ -140,8 +140,8 @@ To style it:
       }
 
       /* Keep :host-context() to make it work where :dir doesn't exist */
-      :host-context([dir="rtl"]) #input,
-      :host(:dir(rtl)) #input {
+      :host(:dir(rtl)) #input,
+      :host-context([dir="rtl"]) #input {
         padding-right: 0px;
         padding-left: 20px;
       }
@@ -182,8 +182,8 @@ To style it:
       }
 
       /* Keep :host-context() to make it work where :dir doesn't exist */
-      :host-context([dir="rtl"]) label,
-      :host(:dir(rtl)) label {
+      :host(:dir(rtl)) label,
+      :host-context([dir="rtl"]) label {
         padding-right: 0px;
         padding-left: 20px;
       }
@@ -254,8 +254,8 @@ To style it:
       }
 
       /* Keep :host-context() to make it work where :dir doesn't exist */
-      :host-context([dir="rtl"]) iron-icon,
-      :host(:dir(rtl)) iron-icon {
+      :host(:dir(rtl)) iron-icon,
+      :host-context([dir="rtl"]) iron-icon {
         left: 0;
         right: auto;
       }
