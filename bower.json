@@ -41,6 +41,7 @@
     "paper-listbox": "PolymerElements/paper-listbox#2.0-preview",
     "paper-tabs": "PolymerElements/paper-tabs#2.0-preview",
     "web-component-tester": "^6.0.0-prerelease.6",
+    "web-animations-js": "web-animations/web-animations-js#^2.2",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.1"
   },
   "variants": {
@@ -66,6 +67,7 @@
         "paper-listbox": "PolymerElements/paper-listbox#^1.0.0",
         "paper-tabs": "PolymerElements/paper-tabs#^1.0.0",
         "web-component-tester": "^4.0.0",
+        "web-animations-js": "web-animations/web-animations-js#^2.2",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
       }
     }
