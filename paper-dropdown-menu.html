@@ -114,6 +114,7 @@ respectively.
           always-float-label="[[alwaysFloatLabel]]"
           no-label-float="[[noLabelFloat]]"
           label="[[label]]">
+          <div prefix>[[prefix]]</div>
           <iron-icon icon="paper-dropdown-menu:arrow-drop-down" suffix></iron-icon>
         </paper-input>
       </div>
@@ -175,6 +176,13 @@ respectively.
            * The label for the dropdown.
            */
           label: {
+            type: String
+          },
+
+          /**
+           * The prefix for the dropdown.
+           */
+          prefix: {
             type: String
           },
 
