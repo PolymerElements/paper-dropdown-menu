@@ -21,33 +21,33 @@
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/PolymerElements/paper-dropdown-menu",
   "dependencies": {
-    "polymer": "Polymer/polymer#^2.0.0-rc.1",
-    "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#2.0-preview",
-    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#2.0-preview",
-    "iron-icon": "PolymerElements/iron-icon#2.0-preview",
-    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#2.0-preview",
-    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#2.0-preview",
-    "paper-behaviors": "PolymerElements/paper-behaviors#2.0-preview",
-    "paper-input": "PolymerElements/paper-input#2.0-preview",
-    "paper-menu-button": "PolymerElements/paper-menu-button#2.0-preview",
-    "paper-ripple": "PolymerElements/paper-ripple#2.0-preview",
-    "paper-styles": "PolymerElements/paper-styles#2.0-preview"
+    "polymer": "Polymer/polymer#1.9 - 2",
+    "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#1 - 2",
+    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#1 - 2",
+    "iron-icon": "PolymerElements/iron-icon#1 - 2",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#1 - 2",
+    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#1 - 2",
+    "paper-behaviors": "PolymerElements/paper-behaviors#1 - 2",
+    "paper-input": "PolymerElements/paper-input#1 - 2",
+    "paper-menu-button": "PolymerElements/paper-menu-button#1 - 2",
+    "paper-ripple": "PolymerElements/paper-ripple#1 - 2",
+    "paper-styles": "PolymerElements/paper-styles#1 - 2"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#2.0-preview",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
-    "iron-test-helpers": "PolymerElements/iron-test-helpers#2.0-preview",
-    "paper-item": "PolymerElements/paper-item#2.0-preview",
-    "paper-listbox": "PolymerElements/paper-listbox#2.0-preview",
-    "paper-tabs": "PolymerElements/paper-tabs#2.0-preview",
-    "web-component-tester": "^6.0.0-prerelease.6",
+    "iron-component-page": "PolymerElements/iron-component-page#1 - 2",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#1 - 2",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#1 - 2",
+    "paper-item": "PolymerElements/paper-item#1 - 2",
+    "paper-listbox": "PolymerElements/paper-listbox#1 - 2",
+    "paper-tabs": "PolymerElements/paper-tabs#1 - 2",
+    "web-component-tester": "^6.0.0",
     "web-animations-js": "web-animations/web-animations-js#^2.2",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.1"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
   "variants": {
     "1.x": {
       "dependencies": {
-        "polymer": "Polymer/polymer#^1.7.0",
+        "polymer": "Polymer/polymer#^1.9",
         "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#^1.0.0",
         "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#^1.0.0",
         "iron-icon": "PolymerElements/iron-icon#^1.0.0",
@@ -69,8 +69,14 @@
         "web-component-tester": "^4.0.0",
         "web-animations-js": "web-animations/web-animations-js#^2.2",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7"
       }
     }
   },
-  "ignore": []
+  "ignore": [],
+  "resolutions": {
+    "webcomponentsjs": "^1.0.0"
+  }
 }
