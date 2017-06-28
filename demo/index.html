@@ -204,7 +204,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <demo-snippet class="centered-demo">
       <template>
         <paper-dropdown-menu label="Dinosaurs" multi>
-          <paper-listbox class="dropdown-content" multi>
+          <paper-listbox slot="dropdown-content" class="dropdown-content" multi>
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
@@ -212,8 +212,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
 
-        <paper-dropdown-menu-light label="Dinosaurs (light)">
-          <paper-listbox class="dropdown-content">
+        <paper-dropdown-menu-light label="Dinosaurs (light)" multi>
+          <paper-listbox slot="dropdown-content" class="dropdown-content" multi>
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
             <paper-item>carcharodontosaurus</paper-item>
