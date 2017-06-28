@@ -97,8 +97,9 @@ respectively.
       on-iron-select="_onIronSelect"
       on-iron-deselect="_onIronDeselect"
       opened="{{opened}}"
-      close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]"
+      multi="[[multi]]"
+      ignore-select="[[multi]]"
       restore-focus-on-close="[[restoreFocusOnClose]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
       <div class="dropdown-trigger" slot="dropdown-trigger">
@@ -278,6 +279,13 @@ respectively.
             type: Boolean,
             value: true
           },
+          /**
+           * If true, multiple selections are allowed.
+           */
+          multi: {
+            type: Boolean,
+            value: false
+          }
         },
 
         listeners: {
@@ -343,7 +351,7 @@ respectively.
          * @param {CustomEvent} event An `iron-select` event.
          */
         _onIronSelect: function(event) {
-          this._setSelectedItem(event.detail.item);
+          this._setSelectedItem(event.detail.item.parentElement.selectedItems);
         },
 
         /**
@@ -352,7 +360,7 @@ respectively.
          * @param {CustomEvent} event An `iron-deselect` event.
          */
         _onIronDeselect: function(event) {
-          this._setSelectedItem(null);
+          this._setSelectedItem(event.detail.item.parentElement.selectedItems);
         },
 
         /**
@@ -372,12 +380,12 @@ respectively.
          * @param {Element} selectedItem A selected Element item, with an
          * optional `label` property.
          */
-        _selectedItemChanged: function(selectedItem) {
+        _selectedItemChanged: function(selectedItems) {
           var value = '';
-          if (!selectedItem) {
-            value = '';
-          } else {
-            value = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
+          if (selectedItems.length) {
+            value = selectedItems.map((item) => {
+              return item && (item.label || item.getAttribute('label') || item.textContent.trim());
+            }).join(', ');
           }
 
           this._setValue(value);
