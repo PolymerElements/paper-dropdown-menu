@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h4>You can change the direction in which the menu opens</h4>
     <demo-snippet class="centered-demo">
       <template>
-        <paper-dropdown-menu label="Upwards and to the left!" vertical-align="bottom" horizontal-align="left">
+        <paper-dropdown-menu label="Offset down and right!" vertical-align="bottom" horizontal-align="left">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -105,7 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
 
-        <paper-dropdown-menu-light label="Upwards and to the left! (light)" vertical-align="bottom" horizontal-align="left">
+        <paper-dropdown-menu-light label="Offset down and right! (light)" vertical-align="bottom" horizontal-align="left">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -116,6 +116,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
     </demo-snippet>
 
+    <h4>You can apply offset to the menu position</h4>
+    <demo-snippet class="centered-demo">
+      <template>
+        <paper-dropdown-menu label="Upwards and to the left!" vertical-offset="64" horizontal-offset="-32">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
+            <paper-item>allosaurus</paper-item>
+            <paper-item>brontosaurus</paper-item>
+            <paper-item>carcharodontosaurus</paper-item>
+            <paper-item>diplodocus</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+        <paper-dropdown-menu-light label="Upwards and to the left! (light)" vertical-offset="64" horizontal-offset="-32">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
+            <paper-item>allosaurus</paper-item>
+            <paper-item>brontosaurus</paper-item>
+            <paper-item>carcharodontosaurus</paper-item>
+            <paper-item>diplodocus</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu-light>
+      </template>
+    </demo-snippet>
 
     <h4>A paper-dropdown-menu can be disabled</h4>
     <demo-snippet class="centered-demo">

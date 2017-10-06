@@ -91,7 +91,8 @@ respectively.
       vertical-align="[[verticalAlign]]"
       horizontal-align="[[horizontalAlign]]"
       dynamic-align="[[dynamicAlign]]"
-      vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat)]]"
+      vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]"
+      horizontal-offset="[[horizontalOffset]]"
       disabled="[[disabled]]"
       no-animations="[[noAnimations]]"
       on-iron-select="_onIronSelect"
@@ -272,6 +273,28 @@ respectively.
           },
             
           /**
+           * A pixel value that will be added to the position calculated for the
+           * given `horizontalAlign`. Use a negative value to offset to the
+           * left, or a positive value to offset to the right.
+           */
+           horizontalOffset: {
+            type: Number,
+            value: 0,
+            notify: true
+          },
+
+          /**
+           * A pixel value that will be added to the position calculated for the
+           * given `verticalAlign`. Use a negative value to offset towards the
+           * top, or a positive value to offset towards the bottom.
+           */
+          verticalOffset: {
+            type: Number,
+            value: 0,
+            notify: true
+          },
+
+          /**
            * Whether focus should be restored to the dropdown when the menu closes.
            */
           restoreFocusOnClose: {
@@ -391,12 +414,12 @@ respectively.
          * @param {boolean} noLabelFloat True if the label should not float
          * above the input, otherwise false.
          */
-        _computeMenuVerticalOffset: function(noLabelFloat) {
+        _computeMenuVerticalOffset: function(noLabelFloat, verticalOffset) {
           // NOTE(cdata): These numbers are somewhat magical because they are
           // derived from the metrics of elements internal to `paper-input`'s
           // template. The metrics will change depending on whether or not the
           // input has a floating label.
-          return noLabelFloat ? -4 : 8;
+          return verticalOffset + (noLabelFloat ? -4 : 8);
         },
 
         /**
