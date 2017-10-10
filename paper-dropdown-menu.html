@@ -91,6 +91,7 @@ respectively.
       vertical-align="[[verticalAlign]]"
       horizontal-align="[[horizontalAlign]]"
       dynamic-align="[[dynamicAlign]]"
+      fit-into="[[fitInto]]"
       vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat)]]"
       disabled="[[disabled]]"
       no-animations="[[noAnimations]]"
@@ -270,7 +271,15 @@ respectively.
           dynamicAlign: {
             type: Boolean
           },
-            
+
+          /**
+           * The element to fit the dropdown into.
+           */
+          fitInto: {
+            type: Object,
+            value: window
+          },
+          
           /**
            * Whether focus should be restored to the dropdown when the menu closes.
            */

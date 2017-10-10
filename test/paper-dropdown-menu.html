@@ -21,6 +21,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-listbox/paper-listbox.html">
   <link rel="import" href="../../paper-item/paper-item.html">
   <link rel="import" href="../paper-dropdown-menu.html">
+
+  <style>
+    #fitIntoContainer {
+      position: fixed;
+      top: 200px;
+      left: 200px;
+      height: 120px;
+      width: 200px;
+      border: 1px solid black;
+    }
+  </style>
 </head>
 <body>
 
@@ -55,6 +66,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-item>Foo textContent</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="FitIntoDropdownMenu">
+    <template>
+      <div id="fitIntoContainer">
+        <paper-dropdown-menu no-animations dynamic-align>
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
+            <paper-item label="Foo label property">Foo textContent</paper-item>
+            <paper-item label="Foo label attribute">Foo textContent</paper-item>
+            <paper-item>Foo textContent</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+      </div>
     </template>
   </test-fixture>
 
@@ -223,6 +248,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('textContent', function() {
           content.selected = 2;
           expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo textContent');
+        });
+      });
+    });
+
+    suite('fitInto', function() {
+      var dropdownMenu;
+      var fitIntoContainer;
+      var dropdown;
+      setup(function(done) {
+        fitIntoContainer = fixture('FitIntoDropdownMenu');
+        dropdownMenu = Polymer.dom(fitIntoContainer).querySelector('paper-dropdown-menu');
+        dropdown = dropdownMenu.$.menuButton.$.dropdown;
+
+        // Wait for distribution.
+        Polymer.Base.async(function() {
+          done();
+        });
+      });
+
+      test('dropdown menu fits into container', function(done) {
+        dropdownMenu.fitInto = fitIntoContainer;
+        runAfterOpen(dropdownMenu, function () {
+          Polymer.Base.async(function () {
+            var targetRect = fitIntoContainer.getBoundingClientRect();
+            var dropdownRect = dropdown.getBoundingClientRect();
+            assert.isTrue(dropdownRect.top >= targetRect.top, 'top ok');
+            assert.isTrue(dropdownRect.left >= targetRect.left, 'left ok');
+            assert.isTrue(dropdownRect.width <= targetRect.width, 'width ok');
+            assert.isTrue(dropdownRect.height <= targetRect.height, 'height ok');
+            done();
+          }, 200);
         });
       });
     });

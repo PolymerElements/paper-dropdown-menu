@@ -42,6 +42,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 200px;
       margin-right: 20px;
     }
+    
+    #fitIntoContainer {
+        height: 150px;
+        width: 100%;
+        text-align: center;
+        border: 1px solid black;
+      }
   </style></custom-style>
 
 </head>
@@ -259,6 +266,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu-light>
       </template>
     </demo-snippet>
+
+    <h4>Fit the dropdown into a container</h4>
+    <demo-snippet class="centered-demo">
+      <template>
+        <div id="fitIntoContainer" class=" horizontal-section-container">
+          <paper-dropdown-menu label="Fit into">
+            <paper-listbox slot="dropdown-content" class="dropdown-content">
+              <paper-item>allosaurus</paper-item>
+              <paper-item>brontosaurus</paper-item>
+              <paper-item>carcharodontosaurus</paper-item>
+              <paper-item>diplodocus</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+
+          <paper-dropdown-menu-light label="Fit into (light)">
+            <paper-listbox slot="dropdown-content" class="dropdown-content">
+              <paper-item>allosaurus</paper-item>
+              <paper-item>brontosaurus</paper-item>
+              <paper-item>carcharodontosaurus</paper-item>
+              <paper-item>diplodocus</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu-light>
+        </div>
+        <script>
+          var fitIntoContainer = document.querySelector('#fitIntoContainer');
+          var dropDownMenu = fitIntoContainer.querySelector('paper-dropdown-menu');
+          var dropdownMenuLight = fitIntoContainer.querySelector('paper-dropdown-menu-light');
+          dropDownMenu.fitInto = fitIntoContainer;
+          dropdownMenuLight.fitInto = fitIntoContainer;
+        </script>
+      </template>
+    </demo-snippet>
+
   </div>
 
   <script>
