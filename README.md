@@ -3,7 +3,7 @@
 
 ## &lt;paper-dropdown-menu&gt;
 
-Material design: [Dropdown menus](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
+Material design: [Dropdown menus](https://material.io/guidelines/components/buttons.html#buttons-dropdown-buttons)
 
 `paper-dropdown-menu` is similar to a native browser select element.
 `paper-dropdown-menu` works with selectable content.
