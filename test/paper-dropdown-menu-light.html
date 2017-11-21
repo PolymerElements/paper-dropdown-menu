@@ -58,6 +58,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="MultiselectDropdownMenu">
+    <template>
+      <paper-dropdown-menu-light no-animations ignore-select>
+        <paper-listbox slot="dropdown-content" class="dropdown-content" selected-values="[0,1]" multi>
+          <paper-item>Foo</paper-item>
+          <paper-item>Bar</paper-item>
+          <paper-item>Baz</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu-light>
+    </template>
+  </test-fixture>
+
   <script>
 
     function runAfterOpen(dropdownMenu, callback) {
@@ -223,6 +235,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('textContent', function() {
           content.selected = 2;
           expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo textContent');
+        });
+      });
+
+      suite('multiselect', function() {
+        setup(function(done) {
+          dropdownMenu = fixture('MultiselectDropdownMenu');
+          content = Polymer.dom(dropdownMenu).querySelector('[slot="dropdown-content"]');
+          // Wait for distribution.
+          Polymer.Base.async(function() {
+            done();
+          });
+        });
+
+        test('makes multiple selections', function() {
+          expect(content.selectedValues.length).to.be.equal(2);
+        });
+
+        test('ignores select', function() {
+          expect(dropdownMenu.ignoreSelect).to.be.true;
         });
       });
     });

@@ -97,9 +97,9 @@ respectively.
       on-iron-select="_onIronSelect"
       on-iron-deselect="_onIronDeselect"
       opened="{{opened}}"
-      close-on-activate
       allow-outside-scroll="[[allowOutsideScroll]]"
-      restore-focus-on-close="[[restoreFocusOnClose]]">
+      restore-focus-on-close="[[restoreFocusOnClose]]"
+      ignore-select="[[ignoreSelect]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
       <div class="dropdown-trigger" slot="dropdown-trigger">
         <paper-ripple></paper-ripple>
@@ -278,6 +278,15 @@ respectively.
             type: Boolean,
             value: true
           },
+
+          /**
+           * Set to true to disable automatically closing the dropdown after
+           * a selection has been made.
+           */
+          ignoreSelect: {
+            type: Boolean,
+            value: false
+          }
         },
 
         listeners: {
