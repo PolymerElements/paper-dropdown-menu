@@ -281,6 +281,7 @@ To style it:
       vertical-align="[[verticalAlign]]"
       horizontal-align="[[horizontalAlign]]"
       vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat)]]"
+      fit-into="[[fitInto]]"
       disabled="[[disabled]]"
       no-animations="[[noAnimations]]"
       on-iron-select="_onIronSelect"
@@ -432,6 +433,14 @@ To style it:
           verticalAlign: {
             type: String,
             value: 'top'
+          },
+
+          /**
+           * The element to fit the dropdown into.
+           */
+          fitInto: {
+            type: Object,
+            value: window
           },
 
           hasContent: {
