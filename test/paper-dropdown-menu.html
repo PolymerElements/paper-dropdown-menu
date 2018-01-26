@@ -115,7 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           MockInteractions.tap(firstItem);
 
           Polymer.Base.async(function() {
-            expect(dropdownMenu.selectedItem).to.be.equal(firstItem);
+            expect(dropdownMenu.selectedItem[0]).to.be.equal(firstItem);
             done();
           });
         });
@@ -132,7 +132,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('the input area shows the correct selection', function() {
           var secondItem = Polymer.dom(dropdownMenu).querySelectorAll('paper-item')[1];
-          expect(dropdownMenu.selectedItem).to.be.equal(secondItem);
+          expect(dropdownMenu.selectedItem[0]).to.be.equal(secondItem);
         });
       });
 
@@ -148,7 +148,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('an `iron-deselect` event clears the current selection', function() {
           content.selected = null;
-          expect(dropdownMenu.selectedItem).to.be.equal(null);
+          expect(dropdownMenu.selectedItem.pop()).to.be.equal(undefined);
         });
       });
 
@@ -210,14 +210,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('label property', function() {
           content.selected = 0;
-          //Fake a label property since paper-item doesn't have one
-          dropdownMenu.selectedItem.label = dropdownMenu.selectedItem.getAttribute('label');
-          expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label property');
+	  Polymer.Base.async(function() {
+	    //Fake a label property since paper-item doesn't have one
+            dropdownMenu.selectedItem[0].label = dropdownMenu.selectedItem[0].getAttribute('label');
+            expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label property');
+          });
         });
 
         test('label attribute', function() {
           content.selected = 1;
-          expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label attribute');
+	  Polymer.Base.async(function() {
+	    expect(dropdownMenu.selectedItemLabel).to.be.equal('Foo label attribute');
+          });
         });
 
         test('textContent', function() {
