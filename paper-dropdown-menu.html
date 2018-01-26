@@ -31,6 +31,10 @@ Material design: [Dropdown menus](https://www.google.com/design/spec/components/
 item is displayed in the control. If no item is selected, the `label` is
 displayed instead.
 
+Selected items can specify a `value` attribute, which will be assigned to the
+`paper-dropdown-menu`'s' own `value` (just like it happens in native select forms).
+
+
 Example:
 
     <paper-dropdown-menu label="Your favourite pastry">
@@ -42,7 +46,16 @@ Example:
       </paper-listbox>
     </paper-dropdown-menu>
 
-This example renders a dropdown menu with 4 options.
+Or, specifiing values, especially useful in forms:
+
+    <paper-dropdown-menu name="country" label="Your country">
+      <paper-listbox class="dropdown-content">
+        <paper-item value="UK">United Kingdom</paper-item>
+        <paper-item value="US">United states of America</paper-item>
+        <paper-item value="IT">Italy</paper-item>
+        <paper-item value="ES">Spain</paper-item>
+      </paper-listbox>
+    </paper-dropdown-menu>
 
 The child element with the slot `dropdown-content` is used as the dropdown
 menu. This can be a [`paper-listbox`](paper-listbox), or any other or
@@ -70,7 +83,7 @@ Custom property | Description | Default
 `--paper-dropdown-menu-input` | A mixin that is applied to the internal paper input | `{}`
 `--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon | `{}`
 
-You can also use any of the `paper-input-container` and `paper-menu-button`
+You ca/n also use any of the `paper-input-container` and `paper-menu-button`
 style mixins and custom properties to style the internal input and menu button
 respectively.
 
@@ -164,8 +177,9 @@ respectively.
 
           /**
            * The value for this element that will be used when submitting in
-           * a form. It is read only, and will always have the same value
-           * as `selectedItemLabel`.
+           * a form. It is read only, and will be equal to the 'value' attribute
+           * of the selected item, or (as a fallback) will be the same as
+           * `selectedItemLabel`.
            */
           value: {
             type: String,
@@ -367,21 +381,37 @@ respectively.
         },
 
         /**
-         * Compute the label for the dropdown given a selected item.
+         * Compute the value and the label for the dropdown given a selected item.
+         * The selected item's `value` (if available) is used as the dropdown
+         * menu's own value. As a fallback, the label is used.
          *
          * @param {Element} selectedItem A selected Element item, with an
          * optional `label` property.
          */
         _selectedItemChanged: function(selectedItem) {
           var value = '';
-          if (!selectedItem) {
-            value = '';
-          } else {
-            value = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
-          }
+          var labelValue = '';
+          if (selectedItem) {
 
+            // It will return a value only if parameter is either truly or ''
+            // It actually returns an object containing the passed value or null,
+            // so that chained || will work.
+            function t( p ){ if( p || p === '' ) return { v: p }; };
+
+            // Value will be either the `value` attribute, or the `value`
+            //  property, or (no choice left) the `labelValue`
+            // NOTE: t() is used so that '' is considered truly
+            value = t( selectedItem.getAttribute('value') ) || t( selectedItem.value ) || t( selectedItem.label) || t( selectedItem.getAttribute('label') ) || t( selectedItem.textContent.trim() );
+            value = value.v;
+
+            // Label follows the same rules as above, minus the 'value' prop/att
+            // NOTE: t() is used so that '' is considered truly
+            labelValue = t( selectedItem.label ) || t( selectedItem.getAttribute('label') ) || t( selectedItem.textContent.trim() );
+            labelValue = labelValue.v;
+          }
           this._setValue(value);
-          this._setSelectedItemLabel(value);
+          this._setSelectedItemLabel(labelValue);
+          this.fire('change');
         },
 
         /**
