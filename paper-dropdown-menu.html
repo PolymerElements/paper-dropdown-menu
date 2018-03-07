@@ -109,7 +109,7 @@ respectively.
           invalid="[[invalid]]"
           readonly
           disabled="[[disabled]]"
-          value="[[selectedItemLabel]]"
+          value="[[value]]"
           placeholder="[[placeholder]]"
           error-message="[[errorMessage]]"
           always-float-label="[[alwaysFloatLabel]]"
@@ -164,13 +164,12 @@ respectively.
 
           /**
            * The value for this element that will be used when submitting in
-           * a form. It is read only, and will always have the same value
-           * as `selectedItemLabel`.
+           * a form. It reflects the value of `selectedItemLabel`. If set directly,
+           * it will not update the `selectedItemLabel` value.
            */
           value: {
             type: String,
             notify: true,
-            readOnly: true
           },
 
           /**
@@ -380,7 +379,7 @@ respectively.
             value = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
           }
 
-          this._setValue(value);
+          this.value = value;
           this._setSelectedItemLabel(value);
         },
 
