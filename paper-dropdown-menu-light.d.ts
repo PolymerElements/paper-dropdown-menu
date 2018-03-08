@@ -165,6 +165,12 @@ interface PaperDropdownMenuLightElement extends Polymer.Element, Polymer.IronBut
    * vertically relative to the dropdown trigger.
    */
   verticalAlign: string|null|undefined;
+
+  /**
+   * Overrides the vertical offset computed in
+   * _computeMenuVerticalOffset.
+   */
+  verticalOffset: number|null|undefined;
   readonly hasContent: boolean|null|undefined;
   hostAttributes: object|null;
 
@@ -229,9 +235,10 @@ interface PaperDropdownMenuLightElement extends Polymer.Element, Polymer.IronBut
    * `noLabelFloat`.
    *
    * @param noLabelFloat True if the label should not float
+   * @param opt_verticalOffset Optional offset from the user
    * above the input, otherwise false.
    */
-  _computeMenuVerticalOffset(noLabelFloat: boolean): any;
+  _computeMenuVerticalOffset(noLabelFloat: boolean, opt_verticalOffset?: number): any;
   _openedChanged(): void;
   _computeLabelClass(noLabelFloat: any, alwaysFloatLabel: any, hasContent: any): any;
   _valueChanged(): void;

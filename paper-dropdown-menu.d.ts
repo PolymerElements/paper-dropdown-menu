@@ -156,6 +156,12 @@ interface PaperDropdownMenuElement extends Polymer.Element, Polymer.IronButtonSt
   verticalAlign: string|null|undefined;
 
   /**
+   * Overrides the vertical offset computed in
+   * _computeMenuVerticalOffset.
+   */
+  verticalOffset: number|null|undefined;
+
+  /**
    * If true, the `horizontalAlign` and `verticalAlign` properties will
    * be considered preferences instead of strict requirements when
    * positioning the dropdown and may be changed if doing so reduces
@@ -230,9 +236,10 @@ interface PaperDropdownMenuElement extends Polymer.Element, Polymer.IronButtonSt
    * `noLabelFloat`.
    *
    * @param noLabelFloat True if the label should not float
+   * @param opt_verticalOffset Optional offset from the user
    * above the input, otherwise false.
    */
-  _computeMenuVerticalOffset(noLabelFloat: boolean): any;
+  _computeMenuVerticalOffset(noLabelFloat: boolean, opt_verticalOffset?: number): any;
   _openedChanged(): void;
 }
 
