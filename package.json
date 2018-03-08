@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/paper-dropdown-menu",
+  "private": true,
+  "description": "An element that works similarly to a native browser select",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-dropdown-menu.git"
+  },
+  "license": "BSD-3-Clause"
+}
