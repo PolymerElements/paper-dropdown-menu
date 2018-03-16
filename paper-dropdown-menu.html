@@ -57,6 +57,11 @@ be passed as the event's `detail.item` property.
 Applications can listen for the `iron-select` and `iron-deselect` events
 to react when options are selected and deselected.
 
+### Validation
+
+If the `auto-validate` attribute is set, the element will be validated when
+the selected item changes.
+
 ### Styling
 
 The following custom properties and mixins are also available for styling:
@@ -138,6 +143,14 @@ respectively.
         ],
 
         properties: {
+
+         /**
+          * Set to true to auto-validate the input value when it changes.
+          */
+          autoValidate: {
+            type: Boolean
+          },
+
           /**
            * The derived "label" of the currently selected item. This value
            * is the `label` property on the selected item if set, or else the
@@ -390,6 +403,16 @@ respectively.
 
           this.value = value;
           this._setSelectedItemLabel(value);
+
+          if( this.autoValidate ){
+            var valid;
+            if (this.validate) {
+              valid = this.validate();
+            } else {
+              valid = this.checkValidity();
+            }
+            this.invalid = !valid;
+          }
         },
 
         /**
