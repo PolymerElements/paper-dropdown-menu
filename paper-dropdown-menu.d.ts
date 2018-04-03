@@ -177,7 +177,7 @@ interface PaperDropdownMenuElement extends Polymer.Element, Polymer.IronButtonSt
 
   /**
    * The content element that is contained by the dropdown menu, if any.
-   *          
+   *        
    */
   readonly contentElement: any;
   attached(): void;
