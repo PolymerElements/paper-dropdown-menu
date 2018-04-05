@@ -603,7 +603,11 @@ To style it:
         _valueChanged: function() {
           // Only update if it's actually different.
           if (this.$.input && this.$.input.textContent !== this.value) {
-            this.$.input.textContent = this.value;
+            if(this.value === undefined || this.value === null || this.value === ''){
+              this.$.input.innerHTML = '&nbsp;';
+            }else{
+              this.$.input.textContent = this.value;
+            }
           }
           this._setHasContent(!!this.value);
         },
