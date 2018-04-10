@@ -140,11 +140,7 @@ respectively.
          * is the `label` property on the selected item if set, or else the
          * trimmed text content of the selected item.
          */
-        selectedItemLabel: {
-          type: String,
-          notify: true,
-          readOnly: true
-        },
+        selectedItemLabel: {type: String, notify: true, readOnly: true},
 
         /**
          * The last selected item. An item is selected if the dropdown menu has
@@ -153,11 +149,7 @@ respectively.
          *
          * @type {?Object}
          */
-        selectedItem: {
-          type: Object,
-          notify: true,
-          readOnly: true
-        },
+        selectedItem: {type: Object, notify: true, readOnly: true},
 
         /**
          * The value for this element that will be used when submitting in
@@ -172,33 +164,23 @@ respectively.
         /**
          * The label for the dropdown.
          */
-        label: {
-          type: String
-        },
+        label: {type: String},
 
         /**
          * The placeholder for the dropdown.
          */
-        placeholder: {
-          type: String
-        },
+        placeholder: {type: String},
 
         /**
          * The error message to display when invalid.
          */
-        errorMessage: {
-            type: String
-        },
+        errorMessage: {type: String},
 
         /**
          * True if the dropdown is open. Otherwise, false.
          */
-        opened: {
-          type: Boolean,
-          notify: true,
-          value: false,
-          observer: '_openedChanged'
-        },
+        opened:
+            {type: Boolean, notify: true, value: false, observer: '_openedChanged'},
 
         /**
          * By default, the dropdown will constrain scrolling on the page
@@ -206,62 +188,43 @@ respectively.
          * Set to true in order to prevent scroll from being constrained
          * to the dropdown when it opens.
          */
-        allowOutsideScroll: {
-          type: Boolean,
-          value: false
-        },
+        allowOutsideScroll: {type: Boolean, value: false},
 
         /**
          * Set to true to disable the floating label. Bind this to the
          * `<paper-input-container>`'s `noLabelFloat` property.
          */
-        noLabelFloat: {
-            type: Boolean,
-            value: false,
-            reflectToAttribute: true
-        },
+        noLabelFloat: {type: Boolean, value: false, reflectToAttribute: true},
 
         /**
          * Set to true to always float the label. Bind this to the
          * `<paper-input-container>`'s `alwaysFloatLabel` property.
          */
-        alwaysFloatLabel: {
-          type: Boolean,
-          value: false
-        },
+        alwaysFloatLabel: {type: Boolean, value: false},
 
         /**
          * Set to true to disable animations when opening and closing the
          * dropdown.
          */
-        noAnimations: {
-          type: Boolean,
-          value: false
-        },
+        noAnimations: {type: Boolean, value: false},
 
         /**
          * The orientation against which to align the menu dropdown
          * horizontally relative to the dropdown trigger.
          */
-        horizontalAlign: {
-          type: String,
-          value: 'right'
-        },
+        horizontalAlign: {type: String, value: 'right'},
 
         /**
          * The orientation against which to align the menu dropdown
          * vertically relative to the dropdown trigger.
          */
-        verticalAlign: {
-          type: String,
-          value: 'top'
-        },
+        verticalAlign: {type: String, value: 'top'},
 
         /**
          * Overrides the vertical offset computed in
          * _computeMenuVerticalOffset.
          */
-         verticalOffset: Number,
+        verticalOffset: Number,
 
         /**
          * If true, the `horizontalAlign` and `verticalAlign` properties will
@@ -269,40 +232,25 @@ respectively.
          * positioning the dropdown and may be changed if doing so reduces
          * the area of the dropdown falling outside of `fitInto`.
          */
-        dynamicAlign: {
-          type: Boolean
-        },
+        dynamicAlign: {type: Boolean},
 
         /**
          * Whether focus should be restored to the dropdown when the menu closes.
          */
-        restoreFocusOnClose: {
-          type: Boolean,
-          value: true
-        },
+        restoreFocusOnClose: {type: Boolean, value: true},
       },
 
-      listeners: {
-        'tap': '_onTap'
-      },
+      listeners: {'tap': '_onTap'},
 
       /**
        * @type {!Object}
        */
-      keyBindings: {
-        'up down': 'open',
-        'esc': 'close'
-      },
+      keyBindings: {'up down': 'open', 'esc': 'close'},
 
-      hostAttributes: {
-        role: 'combobox',
-        'aria-autocomplete': 'none',
-        'aria-haspopup': 'true'
-      },
+      hostAttributes:
+          {role: 'combobox', 'aria-autocomplete': 'none', 'aria-haspopup': 'true'},
 
-      observers: [
-        '_selectedItemChanged(selectedItem)'
-      ],
+      observers: ['_selectedItemChanged(selectedItem)'],
 
       attached: function() {
         // NOTE(cdata): Due to timing, a preselected value in a `IronSelectable`
@@ -382,7 +330,8 @@ respectively.
         if (!selectedItem) {
           value = '';
         } else {
-          value = selectedItem.label || selectedItem.getAttribute('label') || selectedItem.textContent.trim();
+          value = selectedItem.label || selectedItem.getAttribute('label') ||
+              selectedItem.textContent.trim();
         }
 
         this.value = value;
@@ -399,7 +348,9 @@ respectively.
        */
       _computeMenuVerticalOffset: function(noLabelFloat, opt_verticalOffset) {
         // Override offset if it's passed from the user.
-        if (opt_verticalOffset) { return opt_verticalOffset; }
+        if (opt_verticalOffset) {
+          return opt_verticalOffset;
+        }
 
         // NOTE(cdata): These numbers are somewhat magical because they are
         // derived from the metrics of elements internal to `paper-input`'s
