@@ -17,19 +17,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <title>paper-dropdown-menu demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
   <!-- Ensure Web Animations polyfill is loaded since neon-animation 2.0 doesn't import it -->
   <link rel="import" href="../../neon-animation/web-animations.html">
   
-  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../paper-item/paper-item.html">
-  <link rel="import" href="../../paper-listbox/paper-listbox.html">
-  <link rel="import" href="../../paper-tabs/paper-tabs.html">
-  <link rel="import" href="../paper-dropdown-menu.html">
-  <link rel="import" href="../paper-dropdown-menu-light.html">
+  <script type="module" src="../../iron-demo-helpers/demo-snippet.js"></script>
+  <script type="module" src="../../iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../../paper-item/paper-item.js"></script>
+  <script type="module" src="../../paper-listbox/paper-listbox.js"></script>
+  <script type="module" src="../../paper-tabs/paper-tabs.js"></script>
+  <script type="module" src="../paper-dropdown-menu.js"></script>
+  <script type="module" src="../paper-dropdown-menu-light.js"></script>
 
-  <custom-style><style is="custom-style" include="demo-pages-shared-styles">
+  <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style><style is="custom-style" include="demo-pages-shared-styles">
     demo-snippet {
       --demo-snippet-demo: {
         display: flex;
@@ -48,11 +59,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       width: 200px;
       margin-right: 20px;
     }
-  </style></custom-style>
+  </style></custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
 </head>
 <body unresolved>
-  <div class="vertical-section-container centered">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
     <h4>This is a plain paper-dropdown-menu</h4>
     <demo-snippet class="centered-demo">
       <template>
@@ -126,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h4>A paper-dropdown-menu can be disabled</h4>
     <demo-snippet class="centered-demo">
       <template>
-        <paper-dropdown-menu label="Disabled dinosaurs" disabled>
+        <paper-dropdown-menu label="Disabled dinosaurs" disabled="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -135,7 +152,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
 
-        <paper-dropdown-menu-light label="Disabled dinosaurs (light)" disabled>
+        <paper-dropdown-menu-light label="Disabled dinosaurs (light)" disabled="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -186,7 +203,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h4>You can remove the ripple and the animations</h4>
     <demo-snippet class="centered-demo">
       <template>
-        <paper-dropdown-menu label="Dinosaurs" noink no-animations>
+        <paper-dropdown-menu label="Dinosaurs" noink="" no-animations="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -195,7 +212,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
 
-        <paper-dropdown-menu-light label="Dinosaurs (light)" noink no-animations>
+        <paper-dropdown-menu-light label="Dinosaurs (light)" noink="" no-animations="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -269,7 +286,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             };
           }
         </style>
-        <paper-dropdown-menu class="custom" label="Custom" no-label-float>
+        <paper-dropdown-menu class="custom" label="Custom" no-label-float="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -278,7 +295,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
 
-        <paper-dropdown-menu-light class="custom" label="Custom (light)" no-label-float>
+        <paper-dropdown-menu-light class="custom" label="Custom (light)" no-label-float="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
@@ -288,39 +305,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu-light>
       </template>
     </demo-snippet>
-  </div>
+  </div>`;
 
-  <script>
-    // document.addEventListener('WebComponentsReady', function() {
-    //   Demo.dinosaurs = [
-    //     'allosaurus',
-    //     'brontosaurus',
-    //     'carcharodontosaurus',
-    //     'diplodocus',
-    //     'ekrixinatosaurus',
-    //     'fukuiraptor',
-    //     'gallimimus',
-    //     'hadrosaurus',
-    //     'iguanodon',
-    //     'jainosaurus',
-    //     'kritosaurus',
-    //     'liaoceratops',
-    //     'megalosaurus',
-    //     'nemegtosaurus',
-    //     'ornithomimus',
-    //     'protoceratops',
-    //     'quetecsaurus',
-    //     'rajasaurus',
-    //     'stegosaurus',
-    //     'triceratops',
-    //     'utahraptor',
-    //     'vulcanodon',
-    //     'wannanosaurus',
-    //     'xenoceratops',
-    //     'yandusaurus',
-    //     'zephyrosaurus'
-    //   ];
-    // });
-  </script>
+document.body.appendChild($_documentContainer.content);
+</script>
+
+  <script type="module">
+import '@polymer/iron-demo-helpers/demo-snippet.js';
+import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-listbox/paper-listbox.js';
+import '@polymer/paper-tabs/paper-tabs.js';
+import '../paper-dropdown-menu.js';
+import '../paper-dropdown-menu-light.js';
+</script>
 </body>
 </html>
