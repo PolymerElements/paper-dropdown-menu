@@ -1,33 +1,35 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
 import '@polymer/polymer/polymer-legacy.js';
-
 import '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
-import { IronButtonState } from '@polymer/iron-behaviors/iron-button-state.js';
-import { IronControlState } from '@polymer/iron-behaviors/iron-control-state.js';
-import { IronFormElementBehavior } from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
 import '@polymer/iron-icon/iron-icon.js';
-import { IronValidatableBehavior } from '@polymer/iron-validatable-behavior/iron-validatable-behavior.js';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-menu-button/paper-menu-button.js';
 import '@polymer/paper-ripple/paper-ripple.js';
 import '@polymer/paper-styles/default-theme.js';
 import './paper-dropdown-menu-icons.js';
 import './paper-dropdown-menu-shared-styles.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+
+import {IronButtonState} from '@polymer/iron-behaviors/iron-button-state.js';
+import {IronControlState} from '@polymer/iron-behaviors/iron-control-state.js';
+import {IronFormElementBehavior} from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
+import {IronValidatableBehavior} from '@polymer/iron-validatable-behavior/iron-validatable-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import * as gestures from '@polymer/polymer/lib/utils/gestures.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 /**
-Material design: [Dropdown menus](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
+Material design: [Dropdown
+menus](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
 
 `paper-dropdown-menu` is similar to a native browser select element.
 `paper-dropdown-menu` works with selectable content. The currently selected
@@ -53,9 +55,10 @@ element that acts like an [`iron-selector`](iron-selector).
 
 Specifically, the menu child must fire an
 [`iron-select`](iron-selector#event-iron-select) event when one of its
-children is selected, and an [`iron-deselect`](iron-selector#event-iron-deselect)
-event when a child is deselected. The selected or deselected item must
-be passed as the event's `detail.item` property.
+children is selected, and an
+[`iron-deselect`](iron-selector#event-iron-deselect) event when a child is
+deselected. The selected or deselected item must be passed as the event's
+`detail.item` property.
 
 Applications can listen for the `iron-select` and `iron-deselect` events
 to react when options are selected and deselected.
@@ -67,11 +70,16 @@ The following custom properties and mixins are also available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-dropdown-menu` | A mixin that is applied to the element host | `{}`
-`--paper-dropdown-menu-disabled` | A mixin that is applied to the element host when disabled | `{}`
-`--paper-dropdown-menu-ripple` | A mixin that is applied to the internal ripple | `{}`
-`--paper-dropdown-menu-button` | A mixin that is applied to the internal menu button | `{}`
-`--paper-dropdown-menu-input` | A mixin that is applied to the internal paper input | `{}`
-`--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon | `{}`
+`--paper-dropdown-menu-disabled` | A mixin that is applied to the element host
+when disabled | `{}`
+`--paper-dropdown-menu-ripple` | A mixin that is applied to the internal ripple
+| `{}`
+`--paper-dropdown-menu-button` | A mixin that is applied to the internal menu
+button | `{}`
+`--paper-dropdown-menu-input` | A mixin that is applied to the internal paper
+input | `{}`
+`--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon |
+`{}`
 
 You can also use any of the `paper-input-container` and `paper-menu-button`
 style mixins and custom properties to style the internal input and menu button
