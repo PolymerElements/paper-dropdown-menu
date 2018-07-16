@@ -75,22 +75,14 @@ The following custom properties and mixins are also available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-dropdown-menu` | A mixin that is applied to the element host | `{}`
-`--paper-dropdown-menu-disabled` | A mixin that is applied to the element host
-when disabled | `{}`
-`--paper-dropdown-menu-ripple` | A mixin that is applied to the internal ripple
-| `{}`
-`--paper-dropdown-menu-button` | A mixin that is applied to the internal menu
-button | `{}`
-`--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon |
-`{}`
-`--paper-dropdown-menu-disabled-opacity` | The opacity of the dropdown when
-disabled  | `0.33`
-`--paper-dropdown-menu-color` | The color of the input/label/underline when the
-dropdown is unfocused | `--primary-text-color`
-`--paper-dropdown-menu-focus-color` | The color of the label/underline when the
-dropdown is focused  | `--primary-color`
-`--paper-dropdown-error-color` | The color of the label/underline when the
-dropdown is invalid  | `--error-color`
+`--paper-dropdown-menu-disabled` | A mixin that is applied to the element host when disabled | `{}`
+`--paper-dropdown-menu-ripple` | A mixin that is applied to the internal ripple | `{}`
+`--paper-dropdown-menu-button` | A mixin that is applied to the internal menu button | `{}`
+`--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon | `{}`
+`--paper-dropdown-menu-disabled-opacity` | The opacity of the dropdown when disabled  | `0.33`
+`--paper-dropdown-menu-color` | The color of the input/label/underline when the dropdown is unfocused | `--primary-text-color`
+`--paper-dropdown-menu-focus-color` | The color of the label/underline when the dropdown is focused  | `--primary-color`
+`--paper-dropdown-error-color` | The color of the label/underline when the dropdown is invalid  | `--error-color`
 `--paper-dropdown-menu-label` | Mixin applied to the label | `{}`
 `--paper-dropdown-menu-input` | Mixin appled to the input | `{}`
 

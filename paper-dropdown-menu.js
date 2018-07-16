@@ -70,16 +70,11 @@ The following custom properties and mixins are also available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-dropdown-menu` | A mixin that is applied to the element host | `{}`
-`--paper-dropdown-menu-disabled` | A mixin that is applied to the element host
-when disabled | `{}`
-`--paper-dropdown-menu-ripple` | A mixin that is applied to the internal ripple
-| `{}`
-`--paper-dropdown-menu-button` | A mixin that is applied to the internal menu
-button | `{}`
-`--paper-dropdown-menu-input` | A mixin that is applied to the internal paper
-input | `{}`
-`--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon |
-`{}`
+`--paper-dropdown-menu-disabled` | A mixin that is applied to the element host when disabled | `{}`
+`--paper-dropdown-menu-ripple` | A mixin that is applied to the internal ripple | `{}`
+`--paper-dropdown-menu-button` | A mixin that is applied to the internal menu button | `{}`
+`--paper-dropdown-menu-input` | A mixin that is applied to the internal paper input | `{}`
+`--paper-dropdown-menu-icon` | A mixin that is applied to the internal icon | `{}`
 
 You can also use any of the `paper-input-container` and `paper-menu-button`
 style mixins and custom properties to style the internal input and menu button
