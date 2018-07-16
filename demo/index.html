@@ -239,43 +239,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h4>You can style a paper-dropdown-menu using custom properties</h4>
     <demo-snippet class="centered-demo">
       <template>
-        <style is="custom-style">
-          paper-dropdown-menu.custom {
-            --paper-input-container-label: {
-              color: var(--paper-pink-500);
-              font-style: italic;
-              text-align: center;
-              font-weight: bold;
-            };
-            --paper-input-container-input: {
-              color: var(--paper-indigo-500);
-              font-style: normal;
-              font-family: serif;
-              text-transform: uppercase;
-            };
-            /* no underline */
-            --paper-input-container-underline: {
-              display: none;
-            };
-          }
-
-          paper-dropdown-menu-light.custom {
-            --paper-dropdown-menu-label: {
-              color: var(--paper-pink-500);
-              font-style: italic;
-              text-align: center;
-              font-weight: bold;
-            };
-            --paper-dropdown-menu-input: {
-              color: var(--paper-indigo-500);
-              font-style: normal;
-              font-family: serif;
-              text-transform: uppercase;
+        <custom-style>
+          <style is="custom-style">
+            paper-dropdown-menu.custom {
+              --paper-input-container-label: {
+                color: var(--paper-pink-500);
+                font-style: italic;
+                text-align: center;
+                font-weight: bold;
+              };
+              --paper-input-container-input: {
+                color: var(--paper-indigo-500);
+                font-style: normal;
+                font-family: serif;
+                text-transform: uppercase;
+              };
               /* no underline */
-              border-bottom: none;
-            };
-          }
-        </style>
+              --paper-input-container-underline: {
+                display: none;
+              };
+            }
+
+            paper-dropdown-menu-light.custom {
+              --paper-dropdown-menu-label: {
+                color: var(--paper-pink-500);
+                font-style: italic;
+                text-align: center;
+                font-weight: bold;
+              };
+              --paper-dropdown-menu-input: {
+                color: var(--paper-indigo-500);
+                font-style: normal;
+                font-family: serif;
+                text-transform: uppercase;
+                /* no underline */
+                border-bottom: none;
+              };
+            }
+          </style>
+        </custom-style>
         <paper-dropdown-menu class="custom" label="Custom" no-label-float="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
