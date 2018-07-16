@@ -87,7 +87,6 @@ respectively.
 
 @group Paper Elements
 @element paper-dropdown-menu
-@hero hero.svg
 @demo demo/index.html
 */
 Polymer({

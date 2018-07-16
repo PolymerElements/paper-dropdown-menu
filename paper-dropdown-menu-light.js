@@ -106,7 +106,6 @@ Note that in this element, the underline is just the bottom border of the
 
 @group Paper Elements
 @element paper-dropdown-menu-light
-@hero hero.svg
 @demo demo/index.html
 */
 Polymer({
