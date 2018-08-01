@@ -17,30 +17,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <title>paper-dropdown-menu demo</title>
 
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <!-- Ensure Web Animations polyfill is loaded since neon-animation 2.0 doesn't import it -->
-  <link rel="import" href="../../neon-animation/web-animations.html">
+  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@^2.0.0/webcomponents-loader.js"></script>
+  <!-- Import Web Animations polyfill -->
+  <script src="https://unpkg.com/web-animations-js@^2.0.0/web-animations-next-lite.min.js"></script>
+
+  <script type="module">
+    import '@polymer/iron-demo-helpers/demo-snippet.js';
+    import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+    import '@polymer/paper-item/paper-item.js';
+    import '@polymer/paper-listbox/paper-listbox.js';
+    import '@polymer/paper-tabs/paper-tabs.js';
+    import '../paper-dropdown-menu.js';
+    import '../paper-dropdown-menu-light.js';
+
+    import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+    const template = html
+    `<custom-style><style is="custom-style" include="demo-pages-shared-styles"></style></custom-style>`;
+    document.body.appendChild(template.content);
+  </script>
   
-  <script type="module" src="../../iron-demo-helpers/demo-snippet.js"></script>
-  <script type="module" src="../../iron-demo-helpers/demo-pages-shared-styles.js"></script>
-  <script type="module" src="../../paper-item/paper-item.js"></script>
-  <script type="module" src="../../paper-listbox/paper-listbox.js"></script>
-  <script type="module" src="../../paper-tabs/paper-tabs.js"></script>
-  <script type="module" src="../paper-dropdown-menu.js"></script>
-  <script type="module" src="../paper-dropdown-menu-light.js"></script>
-
-  <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
-    <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style><style is="custom-style" include="demo-pages-shared-styles">
+  <custom-style><style is="custom-style">
     demo-snippet {
       --demo-snippet-demo: {
         display: flex;
@@ -59,17 +55,11 @@ $_documentContainer.innerHTML = `<custom-style><style is="custom-style" include=
       width: 200px;
       margin-right: 20px;
     }
-  </style></custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+  </style></custom-style>
 
 </head>
 <body unresolved>
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+  <div class="vertical-section-container centered">
     <h4>This is a plain paper-dropdown-menu</h4>
     <demo-snippet class="centered-demo">
       <template>
@@ -249,43 +239,45 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
     <h4>You can style a paper-dropdown-menu using custom properties</h4>
     <demo-snippet class="centered-demo">
       <template>
-        <style is="custom-style">
-          paper-dropdown-menu.custom {
-            --paper-input-container-label: {
-              color: var(--paper-pink-500);
-              font-style: italic;
-              text-align: center;
-              font-weight: bold;
-            };
-            --paper-input-container-input: {
-              color: var(--paper-indigo-500);
-              font-style: normal;
-              font-family: serif;
-              text-transform: uppercase;
-            };
-            /* no underline */
-            --paper-input-container-underline: {
-              display: none;
-            };
-          }
-
-          paper-dropdown-menu-light.custom {
-            --paper-dropdown-menu-label: {
-              color: var(--paper-pink-500);
-              font-style: italic;
-              text-align: center;
-              font-weight: bold;
-            };
-            --paper-dropdown-menu-input: {
-              color: var(--paper-indigo-500);
-              font-style: normal;
-              font-family: serif;
-              text-transform: uppercase;
+        <custom-style>
+          <style is="custom-style">
+            paper-dropdown-menu.custom {
+              --paper-input-container-label: {
+                color: var(--paper-pink-500);
+                font-style: italic;
+                text-align: center;
+                font-weight: bold;
+              };
+              --paper-input-container-input: {
+                color: var(--paper-indigo-500);
+                font-style: normal;
+                font-family: serif;
+                text-transform: uppercase;
+              };
               /* no underline */
-              border-bottom: none;
-            };
-          }
-        </style>
+              --paper-input-container-underline: {
+                display: none;
+              };
+            }
+
+            paper-dropdown-menu-light.custom {
+              --paper-dropdown-menu-label: {
+                color: var(--paper-pink-500);
+                font-style: italic;
+                text-align: center;
+                font-weight: bold;
+              };
+              --paper-dropdown-menu-input: {
+                color: var(--paper-indigo-500);
+                font-style: normal;
+                font-family: serif;
+                text-transform: uppercase;
+                /* no underline */
+                border-bottom: none;
+              };
+            }
+          </style>
+        </custom-style>
         <paper-dropdown-menu class="custom" label="Custom" no-label-float="">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
@@ -305,19 +297,6 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
         </paper-dropdown-menu-light>
       </template>
     </demo-snippet>
-  </div>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-
-  <script type="module">
-import '@polymer/iron-demo-helpers/demo-snippet.js';
-import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-import '@polymer/paper-item/paper-item.js';
-import '@polymer/paper-listbox/paper-listbox.js';
-import '@polymer/paper-tabs/paper-tabs.js';
-import '../paper-dropdown-menu.js';
-import '../paper-dropdown-menu-light.js';
-</script>
+  </div>
 </body>
 </html>

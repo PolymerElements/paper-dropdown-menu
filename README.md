@@ -1,48 +1,86 @@
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://beta.webcomponents.org/element/PolymerElements/paper-dropdown-menu)
+[![Published on NPM](https://img.shields.io/npm/v/@polymer/paper-dropdown-menu.svg)](https://www.npmjs.com/package/@polymer/paper-dropdown-menu)
 [![Build status](https://travis-ci.org/PolymerElements/paper-dropdown-menu.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-dropdown-menu)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/paper-dropdown-menu)
 
 ## &lt;paper-dropdown-menu&gt;
-
-Material design: [Dropdown menus](https://material.io/guidelines/components/buttons.html#buttons-dropdown-buttons)
-
 `paper-dropdown-menu` is similar to a native browser select element.
 `paper-dropdown-menu` works with selectable content.
 
-<!---
+See: [Documentation](https://www.webcomponents.org/element/@polymer/paper-dropdown-menu),
+  [Demo](https://www.webcomponents.org/element/@polymer/paper-dropdown-menu/demo/demo/index.html).
+
+## Usage
+
+### Installation
 ```
-<custom-element-demo>
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../neon-animation/web-animations.html">
-    <link rel="import" href="paper-dropdown-menu.html">
-    <link rel="import" href="../paper-item/paper-item.html">
-    <link rel="import" href="../paper-listbox/paper-listbox.html">
-    <link rel="import" href="../iron-demo-helpers/demo-pages-shared-styles.html">
-    <style is="custom-style" include="demo-pages-shared-styles">
-      paper-dropdown-menu, paper-listbox {
-        width: 250px;
-      }
-      paper-dropdown-menu {
-        height: 200px;
-        margin: auto;
-        display: block;
-      }
-    </style>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
-```html
-<paper-dropdown-menu label="Dinosaurs">
-  <paper-listbox slot="dropdown-content" selected="1">
-    <paper-item>allosaurus</paper-item>
-    <paper-item>brontosaurus</paper-item>
-    <paper-item>carcharodontosaurus</paper-item>
-    <paper-item>diplodocus</paper-item>
-  </paper-listbox>
-</paper-dropdown-menu>
+npm install --save @polymer/paper-dropdown-menu
 ```
 
-### Changes in 2.0
-- `paper-menu-button 2.0` depends on `neon-animation 2.0`, which doesn't import the Web Animations polyfill, so you'll have to import it ([see example](demo/index.html))
+### In an html file
+```html
+<html>
+  <head>
+    <script type="module">
+      import '@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
+      import '@polymer/paper-item/paper-item.js';
+      import '@polymer/paper-listbox/paper-listbox.js';
+    </script>
+  </head>
+  <body>
+    <paper-dropdown-menu label="Dinosaurs">
+      <paper-listbox slot="dropdown-content" selected="1">
+        <paper-item>allosaurus</paper-item>
+        <paper-item>brontosaurus</paper-item>
+        <paper-item>carcharodontosaurus</paper-item>
+        <paper-item>diplodocus</paper-item>
+      </paper-listbox>
+    </paper-dropdown-menu>
+  </body>
+</html>
+```
+### In a Polymer 3 element
+```js
+import {PolymerElement, html} from '@polymer/polymer';
+import '@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
+import '@polymer/paper-item/paper-item.js';
+import '@polymer/paper-listbox/paper-listbox.js';
+
+class SampleElement extends PolymerElement {
+  static get template() {
+    return html`
+      <paper-dropdown-menu label="Dinosaurs">
+        <paper-listbox slot="dropdown-content" selected="1">
+          <paper-item>allosaurus</paper-item>
+          <paper-item>brontosaurus</paper-item>
+          <paper-item>carcharodontosaurus</paper-item>
+          <paper-item>diplodocus</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    `;
+  }
+}
+customElements.define('sample-element', SampleElement);
+```
+
+## Contributing
+If you want to send a PR to this element, here are
+the instructions for running the tests and demo locally:
+
+### Installation
+```sh
+git clone https://github.com/PolymerElements/paper-dropdown-menu
+cd paper-dropdown-menu
+npm install
+npm install -g polymer-cli
+```
+
+### Running the demo locally
+```sh
+polymer serve --npm
+open http://127.0.0.1:<port>/demo/
+```
+
+### Running the tests
+```sh
+polymer test --npm
+```

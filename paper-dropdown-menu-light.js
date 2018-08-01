@@ -1,14 +1,34 @@
 /**
 @license
 Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
+import '@polymer/polymer/polymer-legacy.js';
+import '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/paper-menu-button/paper-menu-button.js';
+import '@polymer/paper-styles/default-theme.js';
+import './paper-dropdown-menu-icons.js';
+import './paper-dropdown-menu-shared-styles.js';
+
+import {IronButtonState} from '@polymer/iron-behaviors/iron-button-state.js';
+import {IronControlState} from '@polymer/iron-behaviors/iron-control-state.js';
+import {IronFormElementBehavior} from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
+import {IronValidatableBehavior} from '@polymer/iron-validatable-behavior/iron-validatable-behavior.js';
+import {PaperRippleBehavior} from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import * as gestures from '@polymer/polymer/lib/utils/gestures.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
 /**
-Material design: [Dropdown menus](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
+Material design: [Dropdown
+menus](https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons)
 
 This is a faster, lighter version of `paper-dropdown-menu`, that does not
 use a `<paper-input>` internally. Use this element if you're concerned about
@@ -17,9 +37,9 @@ the same page. Note that this element has a slightly different styling API
 than `paper-dropdown-menu`.
 
 `paper-dropdown-menu-light` is similar to a native browser select element.
-`paper-dropdown-menu-light` works with selectable content. The currently selected
-item is displayed in the control. If no item is selected, the `label` is
-displayed instead.
+`paper-dropdown-menu-light` works with selectable content. The currently
+selected item is displayed in the control. If no item is selected, the `label`
+is displayed instead.
 
 Example:
 
@@ -40,9 +60,10 @@ element that acts like an [`iron-selector`](iron-selector).
 
 Specifically, the menu child must fire an
 [`iron-select`](iron-selector#event-iron-select) event when one of its
-children is selected, and an [`iron-deselect`](iron-selector#event-iron-deselect)
-event when a child is deselected. The selected or deselected item must
-be passed as the event's `detail.item` property.
+children is selected, and an
+[`iron-deselect`](iron-selector#event-iron-deselect) event when a child is
+deselected. The selected or deselected item must be passed as the event's
+`detail.item` property.
 
 Applications can listen for the `iron-select` and `iron-deselect` events
 to react when options are selected and deselected.
@@ -65,8 +86,8 @@ Custom property | Description | Default
 `--paper-dropdown-menu-label` | Mixin applied to the label | `{}`
 `--paper-dropdown-menu-input` | Mixin appled to the input | `{}`
 
-Note that in this element, the underline is just the bottom border of the "input".
-To style it:
+Note that in this element, the underline is just the bottom border of the
+"input". To style it:
 
     <style is=custom-style>
       paper-dropdown-menu-light.custom {
@@ -77,31 +98,8 @@ To style it:
 
 @group Paper Elements
 @element paper-dropdown-menu-light
-@hero hero.svg
 @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/polymer/polymer-legacy.js';
-
-import '@polymer/iron-a11y-keys-behavior/iron-a11y-keys-behavior.js';
-import { IronButtonState } from '@polymer/iron-behaviors/iron-button-state.js';
-import { IronControlState } from '@polymer/iron-behaviors/iron-control-state.js';
-import { IronFormElementBehavior } from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
-import '@polymer/iron-icon/iron-icon.js';
-import { IronValidatableBehavior } from '@polymer/iron-validatable-behavior/iron-validatable-behavior.js';
-import { PaperRippleBehavior } from '@polymer/paper-behaviors/paper-ripple-behavior.js';
-import '@polymer/paper-menu-button/paper-menu-button.js';
-import '@polymer/paper-styles/default-theme.js';
-import './paper-dropdown-menu-icons.js';
-import './paper-dropdown-menu-shared-styles.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
-import * as gestures from '@polymer/polymer/lib/utils/gestures.js';
 Polymer({
   _template: html`
     <style include="paper-dropdown-menu-shared-styles">
