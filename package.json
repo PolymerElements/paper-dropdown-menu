@@ -17,10 +17,10 @@
   "devDependencies": {
     "webmat": "^0.2.0",
     "@polymer/iron-demo-helpers": "^3.0.1",
-    "@polymer/iron-test-helpers": "^3.0.0-pre.25",
-    "@polymer/paper-item": "^3.0.0-pre.25",
-    "@polymer/paper-listbox": "^3.0.0-pre.25",
-    "@polymer/paper-tabs": "^3.0.0-pre.25",
+    "@polymer/iron-test-helpers": "^3.0.0-pre.26",
+    "@polymer/paper-item": "^3.0.0-pre.26",
+    "@polymer/paper-listbox": "^3.0.0-pre.26",
+    "@polymer/paper-tabs": "^3.0.0-pre.26",
     "wct-browser-legacy": "^1.0.1",
     "web-animations-js": "^2.3.1",
     "@webcomponents/webcomponentsjs": "^2.0.0",
@@ -35,15 +35,15 @@
   "author": "The Polymer Authors",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "@polymer/iron-a11y-keys-behavior": "^3.0.0-pre.25",
-    "@polymer/iron-form-element-behavior": "^3.0.0-pre.25",
-    "@polymer/iron-icon": "^3.0.0-pre.25",
-    "@polymer/iron-iconset-svg": "^3.0.0-pre.25",
-    "@polymer/iron-validatable-behavior": "^3.0.0-pre.25",
-    "@polymer/paper-behaviors": "^3.0.0-pre.26",
-    "@polymer/paper-input": "^3.0.0-pre.25",
-    "@polymer/paper-menu-button": "^3.0.0-pre.25",
-    "@polymer/paper-ripple": "^3.0.0-pre.25",
-    "@polymer/paper-styles": "^3.0.0-pre.25"
+    "@polymer/iron-a11y-keys-behavior": "^3.0.0-pre.26",
+    "@polymer/iron-form-element-behavior": "^3.0.0-pre.26",
+    "@polymer/iron-icon": "^3.0.0-pre.26",
+    "@polymer/iron-iconset-svg": "^3.0.0-pre.26",
+    "@polymer/iron-validatable-behavior": "^3.0.0-pre.26",
+    "@polymer/paper-behaviors": "^3.0.0-pre.27",
+    "@polymer/paper-input": "^3.0.0-pre.26",
+    "@polymer/paper-menu-button": "^3.0.0-pre.26",
+    "@polymer/paper-ripple": "^3.0.0-pre.26",
+    "@polymer/paper-styles": "^3.0.0-pre.26"
   }
 }
