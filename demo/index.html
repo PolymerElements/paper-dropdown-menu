@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <!-- Ensure Web Animations polyfill is loaded since neon-animation 2.0 doesn't import it -->
   <link rel="import" href="../../neon-animation/web-animations.html">
-  
+
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../paper-item/paper-item.html">
@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
       };
     }
-    
+
     paper-tabs {
       width: 400px;
     }
@@ -66,6 +66,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-dropdown-menu>
 
         <paper-dropdown-menu-light label="Dinosaurs (light)">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
+            <paper-item>allosaurus</paper-item>
+            <paper-item>brontosaurus</paper-item>
+            <paper-item>carcharodontosaurus</paper-item>
+            <paper-item>diplodocus</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu-light>
+      </template>
+    </demo-snippet>
+
+    <h4>Supports RTL</h4>
+    <demo-snippet class="centered-demo">
+      <template>
+        <paper-dropdown-menu dir="rtl" label="Dinosaurs">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
+            <paper-item>allosaurus</paper-item>
+            <paper-item>brontosaurus</paper-item>
+            <paper-item>carcharodontosaurus</paper-item>
+            <paper-item>diplodocus</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+        <paper-dropdown-menu-light dir="rtl" label="Dinosaurs lite">
           <paper-listbox slot="dropdown-content" class="dropdown-content">
             <paper-item>allosaurus</paper-item>
             <paper-item>brontosaurus</paper-item>
