@@ -231,6 +231,7 @@ Polymer({
 
   observers: ['_selectedItemChanged(selectedItem)'],
 
+  /** @override */
   attached: function() {
     // NOTE(cdata): Due to timing, a preselected value in a `IronSelectable`
     // child will cause an `iron-select` event to fire while the element is
