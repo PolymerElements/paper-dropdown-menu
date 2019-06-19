@@ -96,11 +96,11 @@ Note that in this element, the underline is just the bottom border of the
         };
     </style>
 
-@group Paper Elements
 @element paper-dropdown-menu-light
 @demo demo/index.html
 */
 Polymer({
+  /** @override */
   _template: html`
     <style include="paper-dropdown-menu-shared-styles">
       :host(:focus) {
@@ -411,6 +411,7 @@ Polymer({
 
   observers: ['_selectedItemChanged(selectedItem)'],
 
+  /** @override */
   attached: function() {
     // NOTE(cdata): Due to timing, a preselected value in a `IronSelectable`
     // child will cause an `iron-select` event to fire while the element is
