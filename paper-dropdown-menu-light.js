@@ -186,6 +186,7 @@ Polymer({
       label:dir(rtl) {
         padding-right: 0px;
         padding-left: 20px;
+        text-align: right;
       }
 
       :host([no-label-float]) label {

@@ -39,6 +39,12 @@ $_documentContainer.innerHTML =
         @apply --paper-dropdown-menu;
       }
 
+      :host(:dir(rtl)) {
+        text-align: right;
+
+        @apply(--paper-dropdown-menu);
+      }
+
       :host([disabled]) {
         @apply --paper-dropdown-menu-disabled;
       }
