@@ -228,6 +228,7 @@ Polymer({
         visibility: hidden;
         width: 8px;
         z-index: 10;
+        @apply --paper-dropdown-menu-underline;
       }
 
       :host([invalid]) label:after {
