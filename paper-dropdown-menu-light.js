@@ -284,7 +284,7 @@ Polymer({
     <paper-menu-button id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
       <div class="dropdown-trigger" slot="dropdown-trigger">
-        <label class\$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
+        <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>
         <div id="input" tabindex="-1">&nbsp;</div>
