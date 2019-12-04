@@ -401,11 +401,7 @@ Polymer({
    */
   keyBindings: {'up down': 'open', 'esc': 'close'},
 
-  hostAttributes: {
-    tabindex: 0,
-    role: 'button',
-    'aria-haspopup': 'true'
-  },
+  hostAttributes: {tabindex: 0, role: 'button', 'aria-haspopup': 'true'},
 
   observers: ['_selectedItemChanged(selectedItem)'],
 
