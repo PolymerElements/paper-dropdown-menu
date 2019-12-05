@@ -80,11 +80,11 @@ You can also use any of the `paper-input-container` and `paper-menu-button`
 style mixins and custom properties to style the internal input and menu button
 respectively.
 
-@group Paper Elements
 @element paper-dropdown-menu
 @demo demo/index.html
 */
 Polymer({
+  /** @override */
   _template: html`
     <style include="paper-dropdown-menu-shared-styles"></style>
 
