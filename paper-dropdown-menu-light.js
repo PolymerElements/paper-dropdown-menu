@@ -122,6 +122,10 @@ Polymer({
         padding: 16px 0 8px 0;
       }
 
+      [slot="dropdown-trigger"]:focus {
+        outline: none;
+      }
+
       :host([disabled]) [slot="dropdown-trigger"] {
         pointer-events: none;
         opacity: var(--paper-dropdown-menu-disabled-opacity, 0.33);
@@ -281,9 +285,9 @@ Polymer({
       }
     </style>
 
-    <paper-menu-button role="none" id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]">
+    <paper-menu-button id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
-      <div class="dropdown-trigger" slot="dropdown-trigger">
+      <div class="dropdown-trigger" slot="dropdown-trigger" role="button" tabindex="0" aria-haspopup="true">
         <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>
@@ -402,8 +406,6 @@ Polymer({
    * @type {!Object}
    */
   keyBindings: {'up down': 'open', 'esc': 'close'},
-
-  hostAttributes: {tabindex: 0, role: 'button', 'aria-haspopup': 'true'},
 
   observers: ['_selectedItemChanged(selectedItem)'],
 
