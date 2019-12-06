@@ -84,7 +84,8 @@ Custom property | Description | Default
 `--paper-dropdown-menu-focus-color` | The color of the label/underline when the dropdown is focused  | `--primary-color`
 `--paper-dropdown-error-color` | The color of the label/underline when the dropdown is invalid  | `--error-color`
 `--paper-dropdown-menu-label` | Mixin applied to the label | `{}`
-`--paper-dropdown-menu-input` | Mixin appled to the input | `{}`
+`--paper-dropdown-menu-input` | Mixin applied to the input | `{}`
+`--paper-dropdown-menu-focus-underline` | Mixin applied to the focus underline | `{}`
 
 Note that in this element, the underline is just the bottom border of the
 "input". To style it:
@@ -229,6 +230,7 @@ Polymer({
         visibility: hidden;
         width: 8px;
         z-index: 10;
+        @apply --paper-dropdown-menu-focus-underline;
       }
 
       :host([invalid]) label:after {
@@ -282,7 +284,7 @@ Polymer({
     <paper-menu-button role="none" id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
       <div class="dropdown-trigger" slot="dropdown-trigger">
-        <label class\$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
+        <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>
         <div id="input" tabindex="-1">&nbsp;</div>
