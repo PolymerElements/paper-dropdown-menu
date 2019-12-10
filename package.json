@@ -34,16 +34,16 @@
   "version": "3.0.1",
   "author": "The Polymer Authors",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0",
     "@polymer/iron-a11y-keys-behavior": "^3.0.0-pre.26",
     "@polymer/iron-form-element-behavior": "^3.0.0-pre.26",
     "@polymer/iron-icon": "^3.0.0-pre.26",
     "@polymer/iron-iconset-svg": "^3.0.0-pre.26",
     "@polymer/iron-validatable-behavior": "^3.0.0-pre.26",
     "@polymer/paper-behaviors": "^3.0.0-pre.27",
-    "@polymer/paper-input": "^3.0.0-pre.26",
+    "@polymer/paper-input": "^3.1.0",
     "@polymer/paper-menu-button": "^3.0.0-pre.26",
     "@polymer/paper-ripple": "^3.0.0-pre.26",
-    "@polymer/paper-styles": "^3.0.0-pre.26"
+    "@polymer/paper-styles": "^3.0.0-pre.26",
+    "@polymer/polymer": "^3.0.0"
   }
 }
