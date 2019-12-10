@@ -21,10 +21,17 @@ import {IronControlState} from '@polymer/iron-behaviors/iron-control-state.js';
 import {IronFormElementBehavior} from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
 import {IronValidatableBehavior} from '@polymer/iron-validatable-behavior/iron-validatable-behavior.js';
 import {PaperRippleBehavior} from '@polymer/paper-behaviors/paper-ripple-behavior.js';
+import {LegacyElementMixin} from '@polymer/polymer/lib/legacy/legacy-element-mixin.js';
 import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import * as gestures from '@polymer/polymer/lib/utils/gestures.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {wrap} from '@polymer/polymer/lib/utils/wrap.js';
+
+// LegacyElementMixin dedupes and this is the base class for elements created
+// with the `Polymer` function, so this is only a cache lookup.
+// https://github.com/Polymer/polymer/blob/640bc80ac7177b761d46b2fa9c455c318f2b85c6/lib/legacy/class.js#L533-L534
+const LegacyPolymerElementBase = LegacyElementMixin(HTMLElement);
 
 /**
 Material design: [Dropdown
@@ -104,10 +111,6 @@ Polymer({
   /** @override */
   _template: html`
     <style include="paper-dropdown-menu-shared-styles">
-      :host(:focus) {
-        outline: none;
-      }
-
       :host {
         width: 200px;  /* Default size of an <input> */
       }
@@ -408,6 +411,24 @@ Polymer({
   keyBindings: {'up down': 'open', 'esc': 'close'},
 
   observers: ['_selectedItemChanged(selectedItem)'],
+
+  /**
+   * Override `_attachDom` so that we can pass `delegatesFocus`. The overridden
+   * implementation of `_attachDom` specifically skips the steps performed here
+   * if the node already hosts a shadow root:
+   * https://github.com/Polymer/polymer/blob/640bc80ac7177b761d46b2fa9c455c318f2b85c6/lib/mixins/element-mixin.js#L691-L694
+   * @override
+   */
+  _attachDom(dom) {
+    const wrappedThis = wrap(this);
+    wrappedThis.attachShadow({
+      mode: 'open',
+      delegatesFocus: true,
+      shadyUpgradeFragment: dom,
+    });
+    wrappedThis.shadowRoot.appendChild(dom);
+    return LegacyPolymerElementBase.prototype._attachDom.call(this, dom);
+  },
 
   /** @override */
   attached: function() {
