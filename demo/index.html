@@ -277,9 +277,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 font-family: serif;
                 text-transform: uppercase;
               };
-              /* no underline */
+              /* Only show the underline when focused. */
               --paper-input-container-underline: {
                 display: none;
+              };
+              --paper-input-container-underline-focus: {
+                border-color: var(--paper-cyan-500);
               };
             }
 
@@ -295,12 +298,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 font-style: normal;
                 font-family: serif;
                 text-transform: uppercase;
-                /* no underline */
+                /* Only show the underline when focused. */
                 border-bottom: none;
               };
-              /* no focus underline */
-              --paper-dropdown-menu-focus-underline: {
-                display: none;
+              --paper-dropdown-menu-underline-focus: {
+                background-color: var(--paper-cyan-500);
               };
             }
           </style>
