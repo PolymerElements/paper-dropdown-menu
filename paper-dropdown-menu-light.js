@@ -85,7 +85,7 @@ Custom property | Description | Default
 `--paper-dropdown-error-color` | The color of the label/underline when the dropdown is invalid  | `--error-color`
 `--paper-dropdown-menu-label` | Mixin applied to the label | `{}`
 `--paper-dropdown-menu-input` | Mixin applied to the input | `{}`
-`--paper-dropdown-menu-focus-underline` | Mixin applied to the focus underline | `{}`
+`--paper-dropdown-menu-underline-focus` | Mixin applied to the focus underline | `{}`
 
 Note that in this element, the underline is just the bottom border of the
 "input". To style it:
@@ -230,7 +230,7 @@ Polymer({
         visibility: hidden;
         width: 8px;
         z-index: 10;
-        @apply --paper-dropdown-menu-focus-underline;
+        @apply --paper-dropdown-menu-underline-focus;
       }
 
       :host([invalid]) label:after {
