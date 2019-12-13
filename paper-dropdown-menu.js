@@ -100,7 +100,7 @@ Polymer({
       <div class="dropdown-trigger" slot="dropdown-trigger">
         <paper-ripple></paper-ripple>
         <!-- paper-input has type="text" for a11y, do not remove -->
-        <paper-input type="text" invalid="[[invalid]]" readonly disabled="[[disabled]]" value="[[value]]" placeholder="[[placeholder]]" error-message="[[errorMessage]]" always-float-label="[[alwaysFloatLabel]]" no-label-float="[[noLabelFloat]]" label="[[label]]" input-role="button" input-aria-haspopup="listbox" autocomplete="off">
+        <paper-input id="input" type="text" invalid="[[invalid]]" readonly disabled="[[disabled]]" value="[[value]]" placeholder="[[placeholder]]" error-message="[[errorMessage]]" always-float-label="[[alwaysFloatLabel]]" no-label-float="[[noLabelFloat]]" label="[[label]]" input-role="button" input-aria-haspopup="listbox" autocomplete="off">
           <!-- support hybrid mode: user might be using paper-input 1.x which distributes via <content> -->
           <iron-icon icon="paper-dropdown-menu:arrow-drop-down" suffix slot="suffix"></iron-icon>
         </paper-input>
@@ -249,6 +249,16 @@ Polymer({
     });
     wrappedThis.shadowRoot.appendChild(dom);
     return LegacyPolymerElementBase.prototype._attachDom.call(this, dom);
+  },
+
+  focus() {
+    // When using Shady DOM and in browsers that don't support
+    // `delegatesFocus`, attempting to focus this element with the browser's
+    // native `HTMLElement#focus` will cause focus to be lost because this
+    // element isn't focusable in those situations. To work around this, the
+    // element in the shadow root that this element intends to delegate focus
+    // to is manually focused instead.
+    this.$.input._focusableElement.focus();
   },
 
   /** @override */

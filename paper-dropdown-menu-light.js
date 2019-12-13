@@ -290,7 +290,7 @@ Polymer({
 
     <paper-menu-button id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
-      <div class="dropdown-trigger" slot="dropdown-trigger" role="button" tabindex="0" aria-haspopup="listbox">
+      <div id="dropdown-trigger" class="dropdown-trigger" slot="dropdown-trigger" role="button" tabindex="0" aria-haspopup="listbox">
         <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>
@@ -428,6 +428,16 @@ Polymer({
     });
     wrappedThis.shadowRoot.appendChild(dom);
     return LegacyPolymerElementBase.prototype._attachDom.call(this, dom);
+  },
+
+  focus() {
+    // When using Shady DOM and in browsers that don't support
+    // `delegatesFocus`, attempting to focus this element with the browser's
+    // native `HTMLElement#focus` will cause focus to be lost because this
+    // element isn't focusable in those situations. To work around this, the
+    // element in the shadow root that this element intends to delegate focus
+    // to is manually focused instead.
+    this.$['dropdown-trigger'].focus();
   },
 
   /** @override */
