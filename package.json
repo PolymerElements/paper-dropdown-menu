@@ -44,6 +44,6 @@
     "@polymer/paper-menu-button": "^3.0.0-pre.26",
     "@polymer/paper-ripple": "^3.0.0-pre.26",
     "@polymer/paper-styles": "^3.0.0-pre.26",
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.3.1"
   }
 }
