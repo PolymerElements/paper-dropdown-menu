@@ -144,6 +144,11 @@ Polymer({
         @apply --paper-dropdown-menu-input;
       }
 
+      #input::after {
+        display: inline;
+        content: '\xa0'; /* nbsp */
+      }
+
       #input:dir(rtl) {
         padding-right: 0px;
         padding-left: 20px;
@@ -289,7 +294,7 @@ Polymer({
         <label class$="[[_computeLabelClass(noLabelFloat,alwaysFloatLabel,hasContent)]]">
           [[label]]
         </label>
-        <div id="input" tabindex="-1">&nbsp;</div>
+        <div id="input" tabindex="-1"></div>
         <iron-icon icon="paper-dropdown-menu:arrow-drop-down"></iron-icon>
         <span class="error">[[errorMessage]]</span>
       </div>
