@@ -430,6 +430,7 @@ Polymer({
     return LegacyPolymerElementBase.prototype._attachDom.call(this, dom);
   },
 
+  /** @override */
   focus() {
     // When using Shady DOM and in browsers that don't support
     // `delegatesFocus`, attempting to focus this element with the browser's
