@@ -39,6 +39,12 @@ $_documentContainer.innerHTML =
         @apply --paper-dropdown-menu;
       }
 
+      /* paper-dropdown-menu and paper-dropdown-menu-light both delegate focus
+       * to other internal elements which manage focus styling. */
+      :host(:focus) {
+        outline: none;
+      }
+
       :host(:dir(rtl)) {
         text-align: right;
 
