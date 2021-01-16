@@ -1,0 +1,69 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  wct-local:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Install the Polymer CLI
+      run: npm install -g polymer-cli
+
+    - name: Install NPM dependencies
+      run: npm ci
+
+    - name: Check formatting
+      run: >-
+        npm run format && git diff --exit-code || (echo -e
+        '\n\033[31mERROR:\033[0m Project is not formatted. Please run "npm run
+        format".' && false)
+
+    - name: Test in local browsers (Chrome/Firefox)
+      run: polymer test --module-resolution node --npm
+
+  wct-sauce:
+    # Skip if this is from a forked repository because we can't access Sauce
+    # secrets.
+    if: github.event.pull_request.base.repo.id == github.event.pull_request.head.repo.id
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
+
+    - name: Install the Polymer CLI
+      run: npm install -g polymer-cli
+
+    - name: Install NPM dependencies
+      run: npm ci
+
+    - name: Check formatting
+      run: >-
+        npm run format && git diff --exit-code || (echo -e
+        '\n\033[31mERROR:\033[0m Project is not formatted. Please run "npm run
+        format".' && false)
+
+    - name: Test in Sauce Labs browsers (Safari/Edge/IE11/Chrome 41)
+      env:
+        SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+        SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      run: >-
+        polymer test --module-resolution node --npm
+        --sauce 'Windows 10/microsoftedge'
+        --sauce 'Windows 10/internet explorer@11'
+        --sauce 'macOS 10.13/safari@11'
+        --sauce 'OS X 10.11/safari@10'
+        --sauce 'OS X 10.11/safari@9'
+        --sauce 'Linux/chrome'
+        --sauce 'Windows 10/chrome@beta'
+        --sauce 'Windows 10/chrome'
+        --sauce 'Windows 10/firefox'
