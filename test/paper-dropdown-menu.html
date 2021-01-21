@@ -91,7 +91,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // 500ms was chosen through trial and error, with some added padding.
         // Values under approximately 150ms typically fail and those above that
         // typically pass.
-        setTimeout(() => { done(); }, 500);
+        setTimeout(() => {
+          done();
+        }, 500);
       });
 
       setup(function() {
