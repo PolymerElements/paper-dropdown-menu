@@ -74,6 +74,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var dropdownMenu;
       var content;
 
+      suiteSetup(function(done) {
+        // Safari 11 seems to have a render timing bug. Without this timeout,
+        // when IronFitBehavior measures `this.positionTarget` with
+        // `getBoundingClientRect`, it gets an unreasonably large rect and
+        // positions and sizes the dropdown incorrectly. Subsequent, synchronous
+        // calls to `getBoundingClientRect` will also produce the incorrect
+        // rect, but breaking in the debugger immediately after this measurement
+        // and then calling `getBoundingClientRect` manually will produce the
+        // correct rect - using the debugger seems to have an effect on
+        // rendering, which leads me to believe this is a browser bug.
+        //
+        // The incorrect measurement is stored as `positionRect`, here:
+        // https://github.com/PolymerElements/iron-fit-behavior/blob/2ec485fdd770f2567f7a49c23925bc46ebd7240e/iron-fit-behavior.js#L381
+        //
+        // 500ms was chosen through trial and error, with some added padding.
+        // Values under approximately 150ms typically fail and those above that
+        // typically pass.
+        setTimeout(() => {
+          done();
+        }, 500);
+      });
+
       setup(function() {
         dropdownMenu = fixture('TrivialDropdownMenu');
         content = dom(dropdownMenu).querySelector('[slot="dropdown-content"]');
