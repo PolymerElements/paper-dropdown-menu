@@ -1,6 +1,5 @@
 *.tgz
 .github
-.travis.yml
 formatconfig.json
 gen-tsd.json
 test/
