@@ -19,6 +19,7 @@ import './paper-dropdown-menu-shared-styles.js';
 import {IronButtonState} from '@polymer/iron-behaviors/iron-button-state.js';
 import {IronControlState} from '@polymer/iron-behaviors/iron-control-state.js';
 import {IronFormElementBehavior} from '@polymer/iron-form-element-behavior/iron-form-element-behavior.js';
+import {IronResizableBehavior} from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import {IronValidatableBehavior} from '@polymer/iron-validatable-behavior/iron-validatable-behavior.js';
 import {PaperRippleBehavior} from '@polymer/paper-behaviors/paper-ripple-behavior.js';
 import {LegacyElementMixin} from '@polymer/polymer/lib/legacy/legacy-element-mixin.js';
@@ -309,7 +310,8 @@ Polymer({
     IronControlState,
     PaperRippleBehavior,
     IronFormElementBehavior,
-    IronValidatableBehavior
+    IronValidatableBehavior,
+    IronResizableBehavior
   ],
 
   properties: {
@@ -400,7 +402,12 @@ Polymer({
      */
     verticalOffset: Number,
 
-    hasContent: {type: Boolean, readOnly: true}
+    hasContent: {type: Boolean, readOnly: true},
+
+    /**
+     * Whether the dropdown should be the same size az the selectbox.
+     */
+    fullWidthDropdown: {type: Boolean, value: false}
   },
 
   listeners: {'tap': '_onTap'},
@@ -450,6 +457,21 @@ Polymer({
     var contentElement = this.contentElement;
     if (contentElement && contentElement.selectedItem) {
       this._setSelectedItem(contentElement.selectedItem);
+    }
+  },
+
+  /**
+   * When the element is ready
+   */
+  ready() {
+    if (this.fullWidthDropdown) {
+      var ironDropdown = this.$.menuButton.root.querySelector('iron-dropdown');
+      this.addEventListener('iron-resize', () => {
+        setTimeout(
+            () => {ironDropdown.style.width =
+                       this.root.host.offsetWidth + 'px'},
+            10);
+      }, this);
     }
   },
 
