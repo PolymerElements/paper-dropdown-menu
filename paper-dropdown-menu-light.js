@@ -586,5 +586,11 @@ Polymer({
       this.$.input.textContent = this.value;
     }
     this._setHasContent(!!this.value);
+    if (!this.hasContent) {
+      // If there is no content then reset to '&nbsp', which is required
+      // for the input height to be correct. Uses 'xa0' instead of '&nbsp' to
+      // avoid innerHTML.
+      this.$.input.textContent = '\xa0';
+    }
   }
 });
