@@ -95,7 +95,7 @@ Polymer({
   _template: html`
     <style include="paper-dropdown-menu-shared-styles"></style>
 
-    <paper-menu-button id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" dynamic-align="[[dynamicAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]" restore-focus-on-close="[[restoreFocusOnClose]]">
+    <paper-menu-button id="menuButton" vertical-align="[[verticalAlign]]" horizontal-align="[[horizontalAlign]]" dynamic-align="[[dynamicAlign]]" vertical-offset="[[_computeMenuVerticalOffset(noLabelFloat, verticalOffset)]]" disabled="[[disabled]]" no-animations="[[noAnimations]]" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect" opened="{{opened}}" close-on-activate allow-outside-scroll="[[allowOutsideScroll]]" restore-focus-on-close="[[restoreFocusOnClose]]" expand-sizing-target-for-scrollbars="[[expandSizingTargetForScrollbars]]">
       <!-- support hybrid mode: user might be using paper-menu-button 1.x which distributes via <content> -->
       <div class="dropdown-trigger" slot="dropdown-trigger">
         <paper-ripple></paper-ripple>
@@ -222,6 +222,13 @@ Polymer({
      * Whether focus should be restored to the dropdown when the menu closes.
      */
     restoreFocusOnClose: {type: Boolean, value: true},
+
+    /**
+     * If true and scrollbars are added to the dropdown after it is positioned,
+     * the size of the added scrollbars will be added to its `maxWidth` and
+     * `maxHeight`.
+     */
+    expandSizingTargetForScrollbars: {type: Boolean, value: false},
   },
 
   listeners: {'tap': '_onTap'},
